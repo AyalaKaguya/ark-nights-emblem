@@ -1,0 +1,22 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Editor / IDE config
+.vscode/
+.idea/
+*.code-workspace
+
+# AI assistant tooling
+.agents/
+.codex/
+.workbuddy/
+
+# Python
+__pycache__/
+.mypy_cache/
+*.py[cod]
+
+# OS
+Thumbs.db
+.DS_Store

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://duxi77k1qlwtj"
+path="res://.godot/imported/Alpha.obj-9a4482399d6bcf8b090a3b5c6f03593b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Alpha.obj-9a4482399d6bcf8b090a3b5c6f03593b.mesh"]
+
+source_file="res://assets/littleroom_prefabs/Alpha.obj"
+dest_files=["res://.godot/imported/Alpha.obj-9a4482399d6bcf8b090a3b5c6f03593b.mesh", "res://.godot/imported/Alpha.obj-9a4482399d6bcf8b090a3b5c6f03593b.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

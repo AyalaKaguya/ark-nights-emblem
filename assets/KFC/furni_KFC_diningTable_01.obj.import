@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cwx6xpr032ukh"
+path="res://.godot/imported/furni_KFC_diningTable_01.obj-99a131c5b1639d5481de4050f49f2978.mesh"
+
+[deps]
+
+files=["res://.godot/imported/furni_KFC_diningTable_01.obj-99a131c5b1639d5481de4050f49f2978.mesh"]
+
+source_file="res://assets/KFC/furni_KFC_diningTable_01.obj"
+dest_files=["res://.godot/imported/furni_KFC_diningTable_01.obj-99a131c5b1639d5481de4050f49f2978.mesh", "res://.godot/imported/furni_KFC_diningTable_01.obj-99a131c5b1639d5481de4050f49f2978.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

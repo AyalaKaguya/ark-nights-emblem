@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+uid="uid://b8dehxdmo5c7d"
+path="res://.godot/imported/build_char_249_mlyss.spine-json-40ea842b5901818d8aad6a46f962b47b.spjson"
+
+[deps]
+
+source_file="res://assets/character/char_249_mlyss/build/build_char_249_mlyss.spine-json"
+dest_files=["res://.godot/imported/build_char_249_mlyss.spine-json-40ea842b5901818d8aad6a46f962b47b.spjson"]
+
+[params]
+

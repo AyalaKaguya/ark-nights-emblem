@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://u1u6jjr1aab7"
+path="res://.godot/imported/frame.obj-5f8f4d04663d6c1ae14be884cb0c235e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/frame.obj-5f8f4d04663d6c1ae14be884cb0c235e.mesh"]
+
+source_file="res://assets/littleroom_prefabs/frame.obj"
+dest_files=["res://.godot/imported/frame.obj-5f8f4d04663d6c1ae14be884cb0c235e.mesh", "res://.godot/imported/frame.obj-5f8f4d04663d6c1ae14be884cb0c235e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

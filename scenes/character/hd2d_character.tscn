@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dmwoyehit6sob"]
+
+[ext_resource type="Script" uid="uid://7h3b4lt2n2ux" path="res://scripts/character/hd2d_character.gd" id="1_char"]
+
+[sub_resource type="QuadMesh" id="billboard_mesh"]
+size = Vector2(2.4, 2.4)
+
+[sub_resource type="CapsuleShape3D" id="capsule"]
+radius = 0.35
+
+[node name="HD2DCharacter" type="Node3D" unique_id=1051896691 groups=["occlusion_target"]]
+script = ExtResource("1_char")
+
+[node name="CharacterViewport" type="SubViewport" parent="." unique_id=796116788]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="SpineSprite" type="SpineSprite" parent="CharacterViewport" unique_id=708811226]
+position = Vector2(256, 512)
+
+[node name="Billboard" type="MeshInstance3D" parent="." unique_id=1423457381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+mesh = SubResource("billboard_mesh")
+
+[node name="GlowOverlay" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+mesh = SubResource("billboard_mesh")
+
+[node name="DirectionIndicator" type="MeshInstance3D" parent="."]
+
+[node name="PickBody" type="StaticBody3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("capsule")

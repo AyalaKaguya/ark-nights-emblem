@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" format=3 uid="uid://cycjndk1r5dsd"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://cub52r3r2bhq6" path="res://assets/character/char_249_mlyss/back/char_249_mlyss.atlas" id="1_i3tpb"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://qtuwgl4x37ak" path="res://assets/character/char_249_mlyss/back/char_249_mlyss.spine-json" id="2_t7tr3"]
+
+[resource]
+atlas_res = ExtResource("1_i3tpb")
+skeleton_file_res = ExtResource("2_t7tr3")

@@ -1,0 +1,400 @@
+[gd_scene format=3 uid="uid://d0p2f6i6sn1u3"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://cuseal6jddcjt" path="res://assets/character/char_249_mlyss/char_249_mlyss_build.tres" id="1_spine"]
+[ext_resource type="Script" uid="uid://be4ifaqhogb5t" path="res://scripts/camera/rpg_camera.gd" id="3_cam"]
+[ext_resource type="Script" uid="uid://cajxi0ispwlhl" path="res://scripts/camera/occlusion_shatter.gd" id="4_occl"]
+[ext_resource type="PackedScene" uid="uid://dmwoyehit6sob" path="res://scenes/character/hd2d_character.tscn" id="5_hd2d"]
+[ext_resource type="Script" uid="uid://vg84kyw4t65h" path="res://scripts/ai/ai_controller.gd" id="6_ai"]
+[ext_resource type="Script" uid="uid://74uq57ca0cly" path="res://scripts/interaction/interactable_beacon.gd" id="7_beacon"]
+[ext_resource type="Script" uid="uid://bkyci15s216p7" path="res://scripts/player/player_controller.gd" id="8_pc"]
+[ext_resource type="Texture2D" uid="uid://cklygu1od5r8d" path="res://assets/KFC/TX_KFC_furni_01.png" id="8_vmvb8"]
+[ext_resource type="ArrayMesh" uid="uid://di7liwvulo6yn" path="res://assets/KFC/furni_KFC_banner_01.obj" id="9_4i7mf"]
+[ext_resource type="ArrayMesh" uid="uid://dpikgkaxjchov" path="res://assets/KFC/furni_KFC_barrier_01.obj" id="10_3s0n5"]
+[ext_resource type="ArrayMesh" uid="uid://tych5gab63i0" path="res://assets/KFC/furni_KFC_barrier_02.obj" id="11_qpkl4"]
+[ext_resource type="Material" uid="uid://cmo2v46adpjq" path="res://assets/KFC/furni_KFC_barrier_glass.tres" id="11_riyl1"]
+[ext_resource type="ArrayMesh" uid="uid://deyc4jlyf2ack" path="res://assets/KFC/furni_KFC_barrier_03.obj" id="12_g4s1x"]
+[ext_resource type="ArrayMesh" uid="uid://ct01trk6pnq7l" path="res://assets/KFC/furni_KFC_barTable_01.obj" id="13_pf4ct"]
+[ext_resource type="ArrayMesh" uid="uid://b3qqdsuauyws4" path="res://assets/KFC/furni_KFC_barTable_02.obj" id="14_5w2ad"]
+[ext_resource type="ArrayMesh" uid="uid://dfybt1na7bhg2" path="res://assets/KFC/furni_KFC_blackWall_01.obj" id="15_8p5mg"]
+[ext_resource type="ArrayMesh" uid="uid://c30xluvnjky5s" path="res://assets/KFC/furni_KFC_cashierDesk_01.obj" id="16_dsgk7"]
+[ext_resource type="ArrayMesh" uid="uid://muvhqbd1v5dn" path="res://assets/KFC/furni_KFC_cashierDesk_02.obj" id="17_72tv7"]
+[ext_resource type="ArrayMesh" uid="uid://bnuhgg315n8dr" path="res://assets/KFC/furni_KFC_cashierDesk_03.obj" id="18_x6a8j"]
+[ext_resource type="ArrayMesh" uid="uid://br3jxmoyyy80r" path="res://assets/KFC/furni_KFC_ceilingLight_01.obj" id="20_4hyfj"]
+[ext_resource type="ArrayMesh" uid="uid://cmjxfunq56lhb" path="res://assets/KFC/furni_KFC_cupFilling_01.obj" id="22_8kg7c"]
+[ext_resource type="ArrayMesh" uid="uid://cwx6xpr032ukh" path="res://assets/KFC/furni_KFC_diningTable_01.obj" id="23_wwdad"]
+[ext_resource type="ArrayMesh" uid="uid://daef0by4f0r5q" path="res://assets/KFC/furni_KFC_diningTable_02.obj" id="24_ykyjb"]
+[ext_resource type="ArrayMesh" uid="uid://fpp1lmstikcy" path="res://assets/KFC/furni_KFC_displayCabinet_01.obj" id="25_sivbr"]
+[ext_resource type="ArrayMesh" uid="uid://dpthnwl2xu3mo" path="res://assets/KFC/furni_KFC_displayCabinet_02.obj" id="26_4yprr"]
+[ext_resource type="ArrayMesh" uid="uid://bskistirjo4v3" path="res://assets/KFC/furni_KFC_displayCabinet_03.obj" id="27_1ofy4"]
+[ext_resource type="ArrayMesh" uid="uid://o4e175n6cev2" path="res://assets/KFC/furni_KFC_fence_01.obj" id="30_8jhw1"]
+[ext_resource type="ArrayMesh" uid="uid://dfql0ri8gal3" path="res://assets/KFC/furni_KFC_partitionWall_01.obj" id="31_if4ww"]
+[ext_resource type="ArrayMesh" uid="uid://dss3u3co132o" path="res://assets/KFC/furni_KFC_poster_01.obj" id="32_brp11"]
+[ext_resource type="ArrayMesh" uid="uid://crq8xjixkha4w" path="res://assets/KFC/furni_KFC_priceList_01.obj" id="33_dvobo"]
+[ext_resource type="ArrayMesh" uid="uid://be1njph51axc" path="res://assets/KFC/furni_KFC_spotlight_01.obj" id="35_m5u2i"]
+[ext_resource type="ArrayMesh" uid="uid://cc6j583cnrpbf" path="res://assets/KFC/furni_KFC_sticker_01.obj" id="36_7u8at"]
+
+[sub_resource type="StandardMaterial3D" id="focus_mat"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.35, 0.85, 1, 0.35)
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="sphere_mesh"]
+material = SubResource("focus_mat")
+radius = 0.18
+height = 0.36
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r3fl7"]
+load_path = "res://.godot/imported/TX_Skybox_1.png-a814dd4d64a4f54b5c0ccd242c6768d8.s3tc.ctex"
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_cover = SubResource("CompressedTexture2D_r3fl7")
+ground_bottom_color = Color(0.28, 0.25, 0.22, 1)
+ground_horizon_color = Color(0.55, 0.5, 0.45, 1)
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_mat")
+
+[sub_resource type="Environment" id="env"]
+background_mode = 2
+sky = SubResource("sky")
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.8
+glow_blend_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.75, 0.82, 0.9, 1)
+fog_density = 0.008
+fog_sky_affect = 0.5
+
+[sub_resource type="NavigationMesh" id="nav_mesh"]
+agent_height = 1.8
+agent_radius = 0.4
+agent_max_climb = 0.3
+
+[sub_resource type="StandardMaterial3D" id="ground_mat"]
+albedo_color = Color(0.42, 0.45, 0.4, 1)
+roughness = 0.95
+
+[sub_resource type="PlaneMesh" id="ground_mesh"]
+material = SubResource("ground_mat")
+size = Vector2(24, 24)
+
+[sub_resource type="BoxShape3D" id="ground_col"]
+size = Vector3(24, 0.4, 24)
+
+[sub_resource type="StandardMaterial3D" id="box_mat"]
+albedo_color = Color(0.5187072, 0.4847448, 0.7569521, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="box_mesh_a"]
+material = SubResource("box_mat")
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="BoxShape3D" id="box_col_a"]
+size = Vector3(1, 1.5, 1)
+
+[sub_resource type="BoxMesh" id="box_mesh_b"]
+material = SubResource("box_mat")
+size = Vector3(2, 2, 1.5)
+
+[sub_resource type="BoxShape3D" id="box_col_b"]
+size = Vector3(2, 2, 1.5)
+
+[sub_resource type="BoxMesh" id="box_mesh_c"]
+material = SubResource("box_mat")
+size = Vector3(1, 3, 1)
+
+[sub_resource type="BoxShape3D" id="box_col_c"]
+size = Vector3(1, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="beacon_mat"]
+albedo_color = Color(0.4, 0.45, 0.55, 1)
+emission_enabled = true
+emission = Color(1, 0.85, 0.3, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="beacon_mesh"]
+material = SubResource("beacon_mat")
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u85y0"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uhrmv"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3d5c"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pf4ct"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lppl5"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qpkl4"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7r67"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8d0ks"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l74pm"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hyfj"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ype4i"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riyl1"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8p5mg"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72tv7"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6a8j"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7uix"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jvcxi"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uyoo"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0jmk"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfs6k"]
+albedo_texture = ExtResource("8_vmvb8")
+
+[node name="Node3D" type="Node3D" unique_id=1714606335]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1335327980]
+transform = Transform3D(1, 0, 0, 0, 0.985, 0.174, 0, -0.174, 0.985, 0, 1.8, 4.5)
+fov = 60.0
+script = ExtResource("3_cam")
+focus_path = NodePath("../CameraFocus")
+
+[node name="OcclusionShatter" type="Node3D" parent="Camera3D" unique_id=1657740403]
+script = ExtResource("4_occl")
+
+[node name="Character" parent="." unique_id=1637211985 instance=ExtResource("5_hd2d")]
+skeleton_data = ExtResource("1_spine")
+turn_speed = 360.0
+character_name = "手动角色"
+
+[node name="Character2" parent="." unique_id=195463720 instance=ExtResource("5_hd2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+skeleton_data = ExtResource("1_spine")
+character_name = "AI角色"
+
+[node name="AiController" type="Node" parent="." unique_id=1791010753]
+script = ExtResource("6_ai")
+target_path = NodePath("../Character2")
+
+[node name="PlayerController" type="Node" parent="." unique_id=200490709]
+script = ExtResource("8_pc")
+character_path = NodePath("../Character")
+navigation_region_path = NodePath("../World/NavigationRegion3D")
+
+[node name="CameraFocus" type="Node3D" parent="." unique_id=1282983307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="FocusSphere" type="MeshInstance3D" parent="CameraFocus" unique_id=355452338]
+mesh = SubResource("sphere_mesh")
+
+[node name="World" type="Node3D" parent="." unique_id=1431354491]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World" unique_id=2108964418]
+environment = SubResource("env")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World" unique_id=804573661]
+transform = Transform3D(0.86601907, -0.3535631, 0.3535593, 0, 0.70710295, 0.7071106, -0.500011, -0.61237127, 0.61236465, 0, 5, 0)
+shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="World" unique_id=1142837074]
+navigation_mesh = SubResource("nav_mesh")
+
+[node name="Ground" type="MeshInstance3D" parent="World" unique_id=37906172 groups=["ground"]]
+mesh = SubResource("ground_mesh")
+
+[node name="GroundBody" type="StaticBody3D" parent="World/Ground" unique_id=674233838]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground/GroundBody" unique_id=1465874195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19370008, 0)
+shape = SubResource("ground_col")
+
+[node name="ObstacleA" type="StaticBody3D" parent="World" unique_id=1349703024 groups=["nav_obstacle", "occlusion_wall"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.75, 2)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/ObstacleA" unique_id=287660978]
+mesh = SubResource("box_mesh_a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ObstacleA" unique_id=2001677489]
+shape = SubResource("box_col_a")
+
+[node name="ObstacleB" type="StaticBody3D" parent="World" unique_id=1536670276 groups=["nav_obstacle", "occlusion_wall"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -1)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/ObstacleB" unique_id=2105144753]
+mesh = SubResource("box_mesh_b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ObstacleB" unique_id=698520100]
+shape = SubResource("box_col_b")
+
+[node name="ObstacleC" type="StaticBody3D" parent="World" unique_id=1174999788 groups=["nav_obstacle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 3.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="World/ObstacleC" unique_id=1961021265]
+mesh = SubResource("box_mesh_c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/ObstacleC" unique_id=1487943001]
+shape = SubResource("box_col_c")
+
+[node name="InteractableBeacon" type="Node3D" parent="World" unique_id=171044230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.3, 3)
+script = ExtResource("7_beacon")
+
+[node name="Mesh" type="MeshInstance3D" parent="World/InteractableBeacon" unique_id=1026972805]
+mesh = SubResource("beacon_mesh")
+
+[node name="KFC_Room" type="Node3D" parent="World" unique_id=161429617]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, -0.9481487, 0, -35.09401)
+
+[node name="FurniKfcBanner01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=639104688]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.596518, -1.1920929e-06, -53.31632)
+material_override = SubResource("StandardMaterial3D_u85y0")
+mesh = ExtResource("9_4i7mf")
+
+[node name="FurniKfcBarrier" type="Node3D" parent="World/KFC_Room" unique_id=542343801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.077526, 0, -48.16829)
+
+[node name="FurniKfcBarrier01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcBarrier" unique_id=1825518511]
+material_override = SubResource("StandardMaterial3D_uhrmv")
+mesh = ExtResource("10_3s0n5")
+
+[node name="FurniKfcBarrier02" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcBarrier" unique_id=1240838813]
+material_override = ExtResource("11_riyl1")
+mesh = ExtResource("11_qpkl4")
+
+[node name="FurniKfcBarrier03" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcBarrier" unique_id=571611557]
+material_override = SubResource("StandardMaterial3D_v3d5c")
+mesh = ExtResource("12_g4s1x")
+
+[node name="FurniKfcBlackWall01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=4626353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.371, 0, -47.642)
+material_override = SubResource("StandardMaterial3D_pf4ct")
+mesh = ExtResource("15_8p5mg")
+
+[node name="FurniKfcCashierDesk" type="Node3D" parent="World/KFC_Room" unique_id=921775481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4387326, 0, -51.599133)
+
+[node name="FurniKfcCashierDesk01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcCashierDesk" unique_id=873688008]
+material_override = SubResource("StandardMaterial3D_lppl5")
+mesh = ExtResource("16_dsgk7")
+
+[node name="FurniKfcCashierDesk02" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcCashierDesk" unique_id=394762089]
+material_override = ExtResource("11_riyl1")
+mesh = ExtResource("17_72tv7")
+
+[node name="FurniKfcCashierDesk03" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcCashierDesk" unique_id=1317522982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00010108948, -4.7683716e-07, 6.1035156e-05)
+material_override = SubResource("StandardMaterial3D_qpkl4")
+mesh = ExtResource("18_x6a8j")
+
+[node name="FurniKfcDisplayCabinet" type="Node3D" parent="World/KFC_Room" unique_id=1518623178]
+transform = Transform3D(-2, 0, 1.7484555e-07, 0, 2, 0, -1.7484555e-07, 0, -2, -7.449495, 0, -48.07171)
+
+[node name="FurniKfcDisplayCabinet01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcDisplayCabinet" unique_id=953254110]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_i7r67")
+mesh = ExtResource("25_sivbr")
+
+[node name="FurniKfcDisplayCabinet02" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcDisplayCabinet" unique_id=132699603]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_8d0ks")
+mesh = ExtResource("26_4yprr")
+
+[node name="FurniKfcDisplayCabinet03" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcDisplayCabinet" unique_id=2117299619]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, 0)
+material_override = ExtResource("11_riyl1")
+mesh = ExtResource("27_1ofy4")
+
+[node name="FurniKfcDiningTable" type="Node3D" parent="World/KFC_Room" unique_id=1259352377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1835316, 0, -47.88272)
+
+[node name="FurniKfcDiningTable01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcDiningTable" unique_id=1738864120]
+material_override = SubResource("StandardMaterial3D_l74pm")
+mesh = ExtResource("23_wwdad")
+
+[node name="FurniKfcDiningTable02" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcDiningTable" unique_id=806358336]
+material_override = SubResource("StandardMaterial3D_4hyfj")
+mesh = ExtResource("24_ykyjb")
+
+[node name="FurniKfcBarTable" type="Node3D" parent="World/KFC_Room" unique_id=2074136705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.185702, 4.7683716e-07, -48.027714)
+
+[node name="FurniKfcBarTable01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcBarTable" unique_id=1121399964]
+material_override = SubResource("StandardMaterial3D_ype4i")
+mesh = ExtResource("13_pf4ct")
+
+[node name="FurniKfcBarTable02" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcBarTable" unique_id=1197362315]
+material_override = SubResource("StandardMaterial3D_riyl1")
+mesh = ExtResource("14_5w2ad")
+
+[node name="FurniKfcCeilingLight01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1024854601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.631, 10, -50.681)
+material_override = SubResource("StandardMaterial3D_8p5mg")
+mesh = ExtResource("20_4hyfj")
+
+[node name="FurniKfcCeilingLight02" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1094866528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94188607, 10, -50.681)
+material_override = SubResource("StandardMaterial3D_8p5mg")
+mesh = ExtResource("20_4hyfj")
+
+[node name="FurniKfcCupFilling01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=512094911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.989736, -9.536743e-07, -51.262905)
+material_override = SubResource("StandardMaterial3D_72tv7")
+mesh = ExtResource("22_8kg7c")
+
+[node name="FurniKfcFence01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1130556864]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5453827, 4.7683716e-07, -52.845837)
+material_override = SubResource("StandardMaterial3D_x6a8j")
+mesh = ExtResource("30_8jhw1")
+
+[node name="FurniKfcPartitionWall01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1357452844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4805684, 0, -47.846428)
+material_override = SubResource("StandardMaterial3D_s7uix")
+mesh = ExtResource("31_if4ww")
+
+[node name="FurniKfcPoster01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1766553635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.882382, 0, -48.239014)
+material_override = SubResource("StandardMaterial3D_jvcxi")
+mesh = ExtResource("32_brp11")
+
+[node name="FurniKfcPriceList01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=725368537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.436294, 9.996477, -47.708252)
+material_override = SubResource("StandardMaterial3D_8uyoo")
+mesh = ExtResource("33_dvobo")
+
+[node name="FurniKfcSpotlight01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=361503494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.456133, 8.16884, -48.068687)
+material_override = SubResource("StandardMaterial3D_j0jmk")
+mesh = ExtResource("35_m5u2i")
+
+[node name="FurniKfcSticker01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1297303918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.410705, 0, -47.875835)
+material_override = SubResource("StandardMaterial3D_cfs6k")
+mesh = ExtResource("36_7u8at")

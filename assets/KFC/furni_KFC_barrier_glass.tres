@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cmo2v46adpjq"]
+
+[ext_resource type="Shader" uid="uid://bi7vulr7gipl2" path="res://scripts/shaders/black_alpha_glass.gdshader" id="1_sh"]
+[ext_resource type="Texture2D" uid="uid://onn6nhkfon3o" path="res://assets/KFC/TX_KFC_furni_02.png" id="2_tex"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_sh")
+shader_parameter/albedo_tex = ExtResource("2_tex")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/alpha_power = 1.0
+shader_parameter/alpha_scale = 1.0
+shader_parameter/roughness = 0.2
+shader_parameter/metallic = 0.0
