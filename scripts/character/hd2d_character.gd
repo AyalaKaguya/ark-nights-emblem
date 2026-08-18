@@ -6,6 +6,7 @@ extends Node3D
 const CharacterState := preload("res://scripts/character/character_state.gd")
 const CharacterStateMachine := preload("res://scripts/character/character_state_machine.gd")
 const OUTLINE_SHADER := preload("res://scripts/shaders/outline.gdshader")
+const ProjectedShadow := preload("res://scripts/effects/projected_shadow.gd")
 const CollisionRids := preload("res://scripts/util/collision_rids.gd")
 ## 到达判定距离（米）。
 const ARRIVE_DIST := 0.05
@@ -31,6 +32,10 @@ const DEFAULT_BODY_RADIUS := 0.35
 @export_range(5.0, 80.0, 1.0, "degrees") var indicator_arrow_angle_deg := 30.0
 @export var indicator_color := Color(0.95, 0.95, 0.95, 0.9)
 @export var indicator_height := 0.02
+## 投影阴影开关。
+@export var shadow_enabled := true
+## 投影阴影长度 = 立牌高度 × shadow_squash。
+@export_range(0.0, 1.0, 0.05) var shadow_squash := 0.5
 ## 外发光特效开关。
 @export var glow_enabled := true
 ## 外发光颜色。
@@ -99,6 +104,7 @@ func _ready() -> void:
 	_setup_body_material()
 	_setup_glow()
 	_build_indicator()
+	_setup_projected_shadow()
 	_setup_status_panel()
 	direction_indicator.visible = indicator_visible
 	_state_machine = CharacterStateMachine.new(
@@ -230,6 +236,21 @@ func _build_indicator() -> void:
 	mat.disable_receive_shadows = true
 	direction_indicator.material_override = mat
 	direction_indicator.position.y = indicator_height
+
+
+## 投影阴影：把角色立绘沿阴影方向压扁、铺在脚底地面，得到与角色轮廓一致的投影阴影。
+## 阴影跟随角色水平移动（父节点 origin 即脚底），长度 = 立牌高度 × shadow_squash。
+func _setup_projected_shadow() -> void:
+	if not shadow_enabled:
+		return
+	var size := Vector2(2.4, 2.4)
+	if billboard.mesh is QuadMesh:
+		size = (billboard.mesh as QuadMesh).size
+	var shadow := ProjectedShadow.new()
+	shadow.name = "ProjectedShadow"
+	add_child(shadow)
+	shadow.setup(viewport.get_texture(), size)
+	shadow.set_squash(shadow_squash)
 
 
 ## 设置角色逻辑朝向（度/弧度），或让箭头朝向某世界位置（自动投影水平面）。
