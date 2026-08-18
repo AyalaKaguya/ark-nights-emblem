@@ -24,12 +24,12 @@ const _center_height := 1.2  # 球心高度（角色身体中部）
 @export var ignore_group := ""                  # 额外忽略组
 
 var _camera: Camera3D
-var _fades := {}        # MeshInstance3D -> float（当前虚化度 0~1）
-var _infos := {}        # MeshInstance3D -> Dictionary（kind/origin/dir 虚化信息）
-var _originals := {}    # MeshInstance3D -> Material（原始 material_override，恢复用）
-var _shadow_dupes := {} # MeshInstance3D -> MeshInstance3D（只投阴影副本，保证看穿后阴影完整）
-var _shadow_states := {} # MeshInstance3D -> int（原始 cast_shadow 设置，恢复用）
-var _last_active := {}  # 上一次扫描结果（隔帧复用）
+var _fades: Dictionary[MeshInstance3D, float] = {}              # 当前虚化度 0~1
+var _infos: Dictionary[MeshInstance3D, Dictionary] = {}          # kind/origin/dir 虚化信息
+var _originals: Dictionary[MeshInstance3D, Material] = {}        # 原始 material_override，恢复用
+var _shadow_dupes: Dictionary[MeshInstance3D, MeshInstance3D] = {}  # 只投阴影副本，保证看穿后阴影完整
+var _shadow_states: Dictionary[MeshInstance3D, int] = {}         # 原始 cast_shadow 设置，恢复用
+var _last_active: Dictionary[MeshInstance3D, Dictionary] = {}    # 上一次扫描结果（隔帧复用）
 var _scan_counter := 0  # 扫描节流计数
 
 

@@ -4,8 +4,8 @@ extends Camera3D
 
 ## 焦点小球（轨道目标）节点路径
 @export var focus_path: NodePath
-## 焦点小球，运行时从 focus_path 解析
-@onready var focus: Node3D = get_node_or_null(focus_path) if focus_path != NodePath() else null
+## 焦点小球，运行时从 focus_path 解析（非 Node3D 节点会被视为无效）
+@onready var focus: Node3D = (get_node_or_null(focus_path) as Node3D) if focus_path != NodePath() else null
 
 @export_range(2.0, 40.0) var min_distance := 4.0
 @export_range(2.0, 40.0) var max_distance := 14.0

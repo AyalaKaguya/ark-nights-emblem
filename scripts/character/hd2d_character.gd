@@ -14,7 +14,7 @@ const FACING_EPS_DEG := 0.25
 ## 找不到碰撞体时的体积半径兜底（米）。
 const DEFAULT_BODY_RADIUS := 0.35
 
-@export var skeleton_data: SpineSkeletonDataResource
+@export var skeleton_data: SpineSkeletonDataResource  ## 角色当前 Spine 骨骼数据。注意：运行时切换骨骼必须调用 set_skeleton_data()，直接赋值不会更新 SpineSprite。
 @export var anchor_height := 1.2  # 立牌中心相对底部的高度
 ## 立牌竖直方向向镜头（相机）倾斜的最大角度（度）。
 @export_range(0.0, 60.0, 1.0, "degrees") var max_tilt_deg := 15.0
@@ -301,9 +301,9 @@ func _update_hover() -> void:
 	var from := cam.project_ray_origin(mouse)
 	var to := from + cam.project_ray_normal(mouse) * 1000.0
 	var query := PhysicsRayQueryParameters3D.create(from, to)
-	query.collide_with_areas = false
-	query.collide_with_bodies = true
-	query.collision_mask = 3  # layer 1（墙/地面）+ layer 2（角色拾取体）
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	query.collision_mask = 2  # 仅 layer 2（角色拾取 Area3D），避免地面/墙抢走最近命中
 	query.exclude = _get_wall_rids()  # 穿透 occlusion_wall，跨墙仍可悬停角色
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 	if hit.is_empty():
@@ -405,6 +405,9 @@ func _on_one_shot_finished(_state: int) -> void:
 ## 移动到目标点（保持当前地面高度），到达后回 IDLE 并可回调。
 ## 移动方向与视觉朝向均为角速度受限的渐进转向，轨迹平滑无突变。
 func move_to(target: Vector3, arrive: Callable = Callable()) -> void:
+	# 清空旧的导航路径，避免到达直行点后继续把旧路径走完（与 stop_moving 对称）。
+	_path = PackedVector3Array()
+	_path_callback = Callable()
 	_move_target = target
 	_move_target.y = global_position.y
 	_has_move_target = true
@@ -467,7 +470,7 @@ func _update_movement(delta: float) -> void:
 		global_position = _move_target
 		_has_move_target = false
 		if _path.size() > 0:
-			_path_index += 1
+			# 推进交给 _advance_path_point（内部会跳过已到达点），避免重复自增造成跳点。
 			if _advance_path_point():
 				_move_dir = _dir_to(_move_target)
 				return  # 继续沿路径走，保持 MOVE 状态

@@ -30,6 +30,8 @@
 [ext_resource type="ArrayMesh" uid="uid://dfql0ri8gal3" path="res://assets/KFC/furni_KFC_partitionWall_01.obj" id="31_if4ww"]
 [ext_resource type="ArrayMesh" uid="uid://dss3u3co132o" path="res://assets/KFC/furni_KFC_poster_01.obj" id="32_brp11"]
 [ext_resource type="ArrayMesh" uid="uid://crq8xjixkha4w" path="res://assets/KFC/furni_KFC_priceList_01.obj" id="33_dvobo"]
+[ext_resource type="Texture2D" uid="uid://bfy7w5alaamsh" path="res://assets/KFC/TX_KFC_floor_01.png" id="33_pb8dk"]
+[ext_resource type="ArrayMesh" uid="uid://bpnqdmovej11s" path="res://assets/littleroom_prefabs/floor.obj" id="34_2mu51"]
 [ext_resource type="ArrayMesh" uid="uid://be1njph51axc" path="res://assets/KFC/furni_KFC_spotlight_01.obj" id="35_m5u2i"]
 [ext_resource type="ArrayMesh" uid="uid://cc6j583cnrpbf" path="res://assets/KFC/furni_KFC_sticker_01.obj" id="36_7u8at"]
 
@@ -118,6 +120,9 @@ emission_energy_multiplier = 2.0
 material = SubResource("beacon_mat")
 radius = 0.3
 height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmvb8"]
+albedo_texture = ExtResource("33_pb8dk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u85y0"]
 albedo_texture = ExtResource("8_vmvb8")
@@ -271,15 +276,20 @@ script = ExtResource("7_beacon")
 mesh = SubResource("beacon_mesh")
 
 [node name="KFC_Room" type="Node3D" parent="World" unique_id=161429617]
-transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, -0.9481487, 0, -35.09401)
+transform = Transform3D(-0.4, 0, -6.039832e-08, 0, 0.4, 0, 6.039832e-08, 0, -0.4, 0, 0, -10)
+
+[node name="Floor" type="MeshInstance3D" parent="World/KFC_Room" unique_id=66607038]
+transform = Transform3D(-1.116, 0, 9.756382e-08, 0, 1.116, 0, -9.756382e-08, 0, -1.116, 20.53059, -1.0971622, -8.562122)
+material_override = SubResource("StandardMaterial3D_vmvb8")
+mesh = ExtResource("34_2mu51")
 
 [node name="FurniKfcBanner01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=639104688]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.596518, -1.1920929e-06, -53.31632)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.454847, 1.1920929e-06, -3.161106)
 material_override = SubResource("StandardMaterial3D_u85y0")
 mesh = ExtResource("9_4i7mf")
 
 [node name="FurniKfcBarrier" type="Node3D" parent="World/KFC_Room" unique_id=542343801]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.077526, 0, -48.16829)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.139566, 0, 2.1320305)
 
 [node name="FurniKfcBarrier01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcBarrier" unique_id=1825518511]
 material_override = SubResource("StandardMaterial3D_uhrmv")
@@ -294,12 +304,17 @@ material_override = SubResource("StandardMaterial3D_v3d5c")
 mesh = ExtResource("12_g4s1x")
 
 [node name="FurniKfcBlackWall01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=4626353]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.371, 0, -47.642)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.474707, 0, 2.5460186)
+material_override = SubResource("StandardMaterial3D_pf4ct")
+mesh = ExtResource("15_8p5mg")
+
+[node name="FurniKfcBlackWall02" type="MeshInstance3D" parent="World/KFC_Room" unique_id=123476409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.398119, 0, 2.5460224)
 material_override = SubResource("StandardMaterial3D_pf4ct")
 mesh = ExtResource("15_8p5mg")
 
 [node name="FurniKfcCashierDesk" type="Node3D" parent="World/KFC_Room" unique_id=921775481]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4387326, 0, -51.599133)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.542439, 0, -1.4111137)
 
 [node name="FurniKfcCashierDesk01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcCashierDesk" unique_id=873688008]
 material_override = SubResource("StandardMaterial3D_lppl5")
@@ -315,10 +330,10 @@ material_override = SubResource("StandardMaterial3D_qpkl4")
 mesh = ExtResource("18_x6a8j")
 
 [node name="FurniKfcDisplayCabinet" type="Node3D" parent="World/KFC_Room" unique_id=1518623178]
-transform = Transform3D(-2, 0, 1.7484555e-07, 0, 2, 0, -1.7484555e-07, 0, -2, -7.449495, 0, -48.07171)
+transform = Transform3D(-2, 0, 1.7484555e-07, 0, 2, 0, -1.7484555e-07, 0, -2, -5.5532017, 0, 2.1163101)
 
 [node name="FurniKfcDisplayCabinet01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcDisplayCabinet" unique_id=953254110]
-transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, 0)
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, -0.11306763)
 material_override = SubResource("StandardMaterial3D_i7r67")
 mesh = ExtResource("25_sivbr")
 
@@ -333,7 +348,7 @@ material_override = ExtResource("11_riyl1")
 mesh = ExtResource("27_1ofy4")
 
 [node name="FurniKfcDiningTable" type="Node3D" parent="World/KFC_Room" unique_id=1259352377]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1835316, 0, -47.88272)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0798247, 0, 2.3052979)
 
 [node name="FurniKfcDiningTable01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcDiningTable" unique_id=1738864120]
 material_override = SubResource("StandardMaterial3D_l74pm")
@@ -344,7 +359,7 @@ material_override = SubResource("StandardMaterial3D_4hyfj")
 mesh = ExtResource("24_ykyjb")
 
 [node name="FurniKfcBarTable" type="Node3D" parent="World/KFC_Room" unique_id=2074136705]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.185702, 4.7683716e-07, -48.027714)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.081996, 4.7683716e-07, 2.160305)
 
 [node name="FurniKfcBarTable01" type="MeshInstance3D" parent="World/KFC_Room/FurniKfcBarTable" unique_id=1121399964]
 material_override = SubResource("StandardMaterial3D_ype4i")
@@ -355,46 +370,56 @@ material_override = SubResource("StandardMaterial3D_riyl1")
 mesh = ExtResource("14_5w2ad")
 
 [node name="FurniKfcCeilingLight01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1024854601]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.631, 10, -50.681)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.527292, 10, -0.49298096)
 material_override = SubResource("StandardMaterial3D_8p5mg")
 mesh = ExtResource("20_4hyfj")
 
 [node name="FurniKfcCeilingLight02" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1094866528]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94188607, 10, -50.681)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.838179, 10, -0.49298096)
 material_override = SubResource("StandardMaterial3D_8p5mg")
 mesh = ExtResource("20_4hyfj")
 
 [node name="FurniKfcCupFilling01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=512094911]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.989736, -9.536743e-07, -51.262905)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.558954, -9.536743e-07, -1.0748844)
 material_override = SubResource("StandardMaterial3D_72tv7")
 mesh = ExtResource("22_8kg7c")
 
 [node name="FurniKfcFence01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1130556864]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5453827, 4.7683716e-07, -52.845837)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6490896, 4.7683716e-07, -2.6578178)
 material_override = SubResource("StandardMaterial3D_x6a8j")
 mesh = ExtResource("30_8jhw1")
 
 [node name="FurniKfcPartitionWall01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1357452844]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4805684, 0, -47.846428)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5842752, 0, 2.5417233)
 material_override = SubResource("StandardMaterial3D_s7uix")
 mesh = ExtResource("31_if4ww")
 
 [node name="FurniKfcPoster01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1766553635]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.882382, 0, -48.239014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.321899, 0, 2.286951)
 material_override = SubResource("StandardMaterial3D_jvcxi")
 mesh = ExtResource("32_brp11")
 
 [node name="FurniKfcPriceList01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=725368537]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.436294, 9.996477, -47.708252)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.540001, 9.996477, 2.4797668)
 material_override = SubResource("StandardMaterial3D_8uyoo")
 mesh = ExtResource("33_dvobo")
 
 [node name="FurniKfcSpotlight01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=361503494]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.456133, 8.16884, -48.068687)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.352427, 8.16884, 2.4336452)
 material_override = SubResource("StandardMaterial3D_j0jmk")
 mesh = ExtResource("35_m5u2i")
 
 [node name="FurniKfcSticker01" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1297303918]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.410705, 0, -47.875835)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.514412, 0, 2.518715)
+material_override = SubResource("StandardMaterial3D_cfs6k")
+mesh = ExtResource("36_7u8at")
+
+[node name="FurniKfcSticker02" type="MeshInstance3D" parent="World/KFC_Room" unique_id=1993700563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3670883, 0, 2.518715)
+material_override = SubResource("StandardMaterial3D_cfs6k")
+mesh = ExtResource("36_7u8at")
+
+[node name="FurniKfcSticker03" type="MeshInstance3D" parent="World/KFC_Room" unique_id=153939651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.337458, 0, 2.5187168)
 material_override = SubResource("StandardMaterial3D_cfs6k")
 mesh = ExtResource("36_7u8at")

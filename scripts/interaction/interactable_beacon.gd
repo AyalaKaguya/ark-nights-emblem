@@ -1,5 +1,5 @@
 class_name InteractableBeacon
-extends "res://scripts/interaction/interactable.gd"
+extends Interactable
 ## 示例可交互对象：交互后在两种颜色间切换（演示交互逻辑）。
 
 @export var active_color := Color(1.0, 0.85, 0.3, 1.0)

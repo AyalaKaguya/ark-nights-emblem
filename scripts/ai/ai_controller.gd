@@ -5,6 +5,7 @@ extends Node
 ## 挂在场景任意位置，把要控制的 HD2DCharacter 拖到 target_path。
 
 const CharacterState := preload("res://scripts/character/character_state.gd")
+const HD2DCharacter := preload("res://scripts/character/hd2d_character.gd")
 ## 移动超时（秒）：角色持续移动超过此时长仍未完成（如被碰撞卡住）→ 强制停下重新决策。
 const MOVE_TIMEOUT := 8.0
 
@@ -18,7 +19,7 @@ enum Behavior {
 @export_range(0.5, 30.0) var wander_radius := 6.0   # 漫游半径
 @export_range(0.0, 20.0) var idle_wait := 1.5       # 每次决策前的空闲等待（秒）
 
-var _target: Variant = null                     # 运行时解析的目标角色（duck-typing 调用）
+var _target: HD2DCharacter = null               # 运行时解析的目标角色
 var _rng := RandomNumberGenerator.new()
 var _idle_time := 0.0
 var _move_time := 0.0
@@ -26,12 +27,12 @@ var _move_time := 0.0
 
 func _ready() -> void:
 	_rng.randomize()
-	_target = get_node_or_null(target_path)
+	_target = get_node_or_null(target_path) as HD2DCharacter
 	_idle_time = _rng.randf_range(0.0, idle_wait)
 
 
 func _process(delta: float) -> void:
-	if _target == null or not _target.has_method("get_state"):
+	if _target == null:
 		return
 	var state: int = _target.get_state()
 	# 移动超时保护：被卡住（碰撞/寻路异常）时强制停下并立即重新决策
@@ -39,8 +40,7 @@ func _process(delta: float) -> void:
 		_move_time += delta
 		if _move_time >= MOVE_TIMEOUT:
 			_move_time = 0.0
-			if _target.has_method("stop_moving"):
-				_target.stop_moving()
+			_target.stop_moving()
 			_decide()
 		return
 	_move_time = 0.0

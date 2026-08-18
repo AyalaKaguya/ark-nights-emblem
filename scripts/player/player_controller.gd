@@ -24,7 +24,7 @@ const CollisionRids := preload("res://scripts/util/collision_rids.gd")
 ## 寻路障碍物分组（专用于寻路，与遮挡虚化的 occlusion_wall 无关）。
 @export var nav_obstacle_group := "nav_obstacle"
 
-var _character: Variant = null
+var _character: HD2DCharacter = null
 var _navigation_region: NavigationRegion3D
 var _selected: Node3D = null
 var _path_line: MeshInstance3D
@@ -34,7 +34,7 @@ var _path_height := 0.06
 
 
 func _ready() -> void:
-	_character = get_node_or_null(character_path)
+	_character = get_node_or_null(character_path) as HD2DCharacter
 	_navigation_region = get_node_or_null(navigation_region_path) as NavigationRegion3D
 	_setup_path_visual()
 	# 延迟到场景就绪后构建导航网格（烘焙在 headless 下不可用，改用手动 cell 网格）
@@ -89,7 +89,6 @@ func _update_path_visual() -> void:
 	if not _has_path:
 		return
 	var moving: bool = _character != null \
-		and _character.has_method("get_state") \
 		and _character.get_state() == CharacterState.Id.MOVE
 	if not moving:
 		_hide_path()
@@ -250,7 +249,7 @@ func _set_selected(obj: Node3D) -> void:
 ## 右键：命中地面则寻路移动过去（射线穿透 occlusion_wall 选点）。
 ## 只接受法线接近竖直的表面（上表面/平地面），墙面等陡坡点击被忽略。
 func _try_navigate() -> void:
-	if _character == null or not _character.has_method("move_along_path"):
+	if _character == null:
 		return
 	var hit := _raycast(1, false, true)  # layer 1，穿透 occlusion_wall 选地面
 	if hit.is_empty():

@@ -1,4 +1,5 @@
 class_name CharacterState
+extends RefCounted
 ## 角色状态枚举与 Spine 动画映射（状态机以 Spine 动画为基准）。
 ##
 ## 每个状态对应一个 Spine 动画；一次性状态（ONE_SHOT）在动画播放完成后

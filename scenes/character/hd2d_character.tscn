@@ -29,7 +29,7 @@ mesh = SubResource("billboard_mesh")
 
 [node name="DirectionIndicator" type="MeshInstance3D" parent="."]
 
-[node name="PickBody" type="StaticBody3D" parent="."]
+[node name="PickBody" type="Area3D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
