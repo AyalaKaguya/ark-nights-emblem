@@ -51,8 +51,8 @@ func _process(delta: float) -> void:
 
 
 ## 收集当前应虚化的所有网格：对每个目标做视线射线检测
-func _collect_active_meshes() -> Dictionary:
-	var result := {}
+func _collect_active_meshes() -> Dictionary[MeshInstance3D, Dictionary]:
+	var result: Dictionary[MeshInstance3D, Dictionary] = {}
 	var space := get_world_3d().direct_space_state
 	for target in get_tree().get_nodes_in_group(target_group):
 		if target is Node3D:
@@ -62,12 +62,12 @@ func _collect_active_meshes() -> Dictionary:
 
 ## 相机 → 目标身体多个采样点的视线射线：命中墙体（wall_group）→ 收集其网格打洞看穿。
 ## 非墙体模型不参与处理（保持原样）。
-func _collect_for_target(space: PhysicsDirectSpaceState3D, target: Node3D, result: Dictionary) -> void:
+func _collect_for_target(space: PhysicsDirectSpaceState3D, target: Node3D, result: Dictionary[MeshInstance3D, Dictionary]) -> void:
 	var cam_pos := _camera.global_position
 	var excludes: Array[RID] = []
 	_collect_target_rids(target, excludes)
 	var points := _sample_points(target)
-	var hits := {}  # MeshInstance3D -> true
+	var hits: Dictionary[MeshInstance3D, bool] = {}
 	for point in points:
 		var query := PhysicsRayQueryParameters3D.create(cam_pos, point)
 		query.exclude = excludes
@@ -147,7 +147,7 @@ func _collect_target_rids(node: Node, rids: Array[RID]) -> void:
 
 ## 让遮挡物 fade 逼近目标值（1=应虚化，0=已离开），归零时还原材质。
 ## keys() 返回快照数组，迭代中直接 erase 字典项是安全的。
-func _update_fades(active: Dictionary, delta: float) -> void:
+func _update_fades(active: Dictionary[MeshInstance3D, Dictionary], delta: float) -> void:
 	for mesh in active.keys():
 		_infos[mesh] = active[mesh]  # 虚化信息以最新为准（kind/轴可能切换）
 		_fades[mesh] = _fades.get(mesh, 0.0)
@@ -230,7 +230,7 @@ func _clear_shadow_dupe(mesh: MeshInstance3D) -> void:
 		if is_instance_valid(dupe):
 			dupe.queue_free()
 	if _shadow_states.has(mesh):
-		mesh.cast_shadow = _shadow_states[mesh]
+		mesh.cast_shadow = _shadow_states[mesh] as GeometryInstance3D.ShadowCastingSetting
 		_shadow_states.erase(mesh)
 
 

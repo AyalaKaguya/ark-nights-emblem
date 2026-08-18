@@ -20,3 +20,6 @@ __pycache__/
 # OS
 Thumbs.db
 .DS_Store
+
+# Test output artifacts
+tests/*_out.txt

@@ -43,7 +43,7 @@ const DEFAULT_BODY_RADIUS := 0.35
 @export var min_move_speed := 1.5
 ## 最快移动速度（米/秒，距离达到 speed_ramp_dist 时）。
 @export var max_move_speed := 5.0
-## 速度坡度距离（米）：距目标达到此值后按最快速度前进。
+## 速度坡度距离（米）：移动总距离达到此值后按最快速度前进；更近则按比例减慢。
 @export var speed_ramp_dist := 8.0
 ## 可选速度曲线：采样 t∈[0,1]（距目标 0→speed_ramp_dist）映射为速度比例；留空用 smoothstep。
 @export var speed_curve: Curve
@@ -71,6 +71,7 @@ var _glow_amount := 0.0   # 当前发光强度（平滑淡入淡出）
 var _hovered := false      # 鼠标是否悬停在角色上
 var _state_machine: CharacterStateMachine  # 状态机（动画驱动）
 var _move_target := Vector3.ZERO
+var _move_total_dist := 0.0      # 本次移动的总距离（米），用于决定全程速度（近走远跑）
 var _has_move_target := false
 var _arrive_callback: Callable
 var _path := PackedVector3Array()
@@ -404,12 +405,16 @@ func _on_one_shot_finished(_state: int) -> void:
 
 ## 移动到目标点（保持当前地面高度），到达后回 IDLE 并可回调。
 ## 移动方向与视觉朝向均为角速度受限的渐进转向，轨迹平滑无突变。
+## 速度由本次移动总距离决定：近距离慢走、远距离跑动，全程恒定。
 func move_to(target: Vector3, arrive: Callable = Callable()) -> void:
 	# 清空旧的导航路径，避免到达直行点后继续把旧路径走完（与 stop_moving 对称）。
 	_path = PackedVector3Array()
 	_path_callback = Callable()
 	_move_target = target
 	_move_target.y = global_position.y
+	var to := _move_target - global_position
+	to.y = 0.0
+	_move_total_dist = to.length()
 	_has_move_target = true
 	_arrive_callback = arrive
 	_move_dir = _dir_to(_move_target)
@@ -429,12 +434,14 @@ func stop_moving() -> void:
 
 ## 沿导航路径逐点移动（由 PlayerController 寻路后调用）。
 ## 路径先做 Chaikin 细分平滑，拐角变圆滑；段间转向渐进。
+## 速度按整条路径总长度决定（近走远跑），与路径点间距无关。
 func move_along_path(path: PackedVector3Array, arrive: Callable = Callable()) -> void:
 	_path = smooth_path(path)
 	_path_index = 0
 	_path_callback = arrive
 	_has_move_target = false
 	_arrive_callback = Callable()
+	_move_total_dist = _path_length(_path)
 	if _advance_path_point():
 		_move_dir = _dir_to(_move_target)
 		set_state(CharacterState.Id.MOVE)
@@ -482,7 +489,7 @@ func _update_movement(delta: float) -> void:
 		if cb.is_valid():
 			cb.call()
 		return
-	var step := _current_speed(dist) * delta
+	var step := _current_speed(_move_total_dist) * delta
 	if step > dist:
 		step = dist
 	# 移动方向朝目标方向渐进旋转（角速度受限），避免突发大角度折向
@@ -570,8 +577,8 @@ func _set_facing_target_dir(dir: Vector3) -> void:
 	_has_facing_target = true
 
 
-## 根据距目标距离计算当前移动速度：近慢远快，经速度曲线（或 smoothstep）映射。
-## 距离越近速度越低，自然形成接近目标时的减速。
+## 根据本次移动总距离计算移动速度：近慢远快，经速度曲线（或 smoothstep）映射。
+## 速度在整次移动中保持恒定，到达时由 step>dist 钳制精确停点。
 func _current_speed(dist: float) -> float:
 	var t := clampf(dist / maxf(speed_ramp_dist, 0.001), 0.0, 1.0)
 	var k := 1.0
@@ -580,6 +587,16 @@ func _current_speed(dist: float) -> float:
 	else:
 		k = t * t * (3.0 - 2.0 * t)  # smoothstep：近处起步慢、远处快速
 	return lerpf(min_move_speed, max_move_speed, k)
+
+
+## 计算路径的水平总长度（米），用于按总距离决定移动速度。
+func _path_length(path: PackedVector3Array) -> float:
+	var total := 0.0
+	for i in range(path.size() - 1):
+		var dx := path[i + 1].x - path[i].x
+		var dz := path[i + 1].z - path[i].z
+		total += sqrt(dx * dx + dz * dz)
+	return total
 
 
 ## 每帧把 facing_deg 以 facing_speed 向目标角度渐进旋转（走最短弧，跨 ±180° 环绕）。
