@@ -12,6 +12,7 @@ extends Node3D
 ## - 淡入淡出：遮挡出现/消失时 amount/fade 平滑过渡，遮挡物材质在恢复后自动还原。
 
 const SHATTER_SHADER := preload("res://scripts/shaders/occlusion_shatter.gdshader")
+const MAX_HOLES := 16        # 单堵墙同时支持的最大洞数（须与 occlusion_shatter.gdshader 中一致）
 const _center_height := 1.2  # 球心高度（角色身体中部）
 
 @export var target_group := "occlusion_target"  # 需要保持可见的目标组
@@ -25,11 +26,11 @@ const _center_height := 1.2  # 球心高度（角色身体中部）
 
 var _camera: Camera3D
 var _fades: Dictionary[MeshInstance3D, float] = {}              # 当前虚化度 0~1
-var _infos: Dictionary[MeshInstance3D, Dictionary] = {}          # kind/origin/dir 虚化信息
+var _infos: Dictionary[MeshInstance3D, Array] = {}              # 每墙一个洞数组：[{origin,dir}, ...]（多角色各一个洞）
 var _originals: Dictionary[MeshInstance3D, Material] = {}        # 原始 material_override，恢复用
 var _shadow_dupes: Dictionary[MeshInstance3D, MeshInstance3D] = {}  # 只投阴影副本，保证看穿后阴影完整
 var _shadow_states: Dictionary[MeshInstance3D, int] = {}         # 原始 cast_shadow 设置，恢复用
-var _last_active: Dictionary[MeshInstance3D, Dictionary] = {}    # 上一次扫描结果（隔帧复用）
+var _last_active: Dictionary[MeshInstance3D, Array] = {}         # 上一次扫描结果（隔帧复用）
 var _scan_counter := 0  # 扫描节流计数
 
 
@@ -50,9 +51,10 @@ func _process(delta: float) -> void:
 	_update_fades(active, delta)
 
 
-## 收集当前应虚化的所有网格：对每个目标做视线射线检测
-func _collect_active_meshes() -> Dictionary[MeshInstance3D, Dictionary]:
-	var result: Dictionary[MeshInstance3D, Dictionary] = {}
+## 收集当前应虚化的所有网格：对每个目标做视线射线检测。
+## 返回：每堵被挡的墙 → 一个“洞”数组（每个挡住它的角色各贡献一个 {origin,dir}）。
+func _collect_active_meshes() -> Dictionary[MeshInstance3D, Array]:
+	var result: Dictionary[MeshInstance3D, Array] = {}
 	var space := get_world_3d().direct_space_state
 	for target in get_tree().get_nodes_in_group(target_group):
 		if target is Node3D:
@@ -60,9 +62,10 @@ func _collect_active_meshes() -> Dictionary[MeshInstance3D, Dictionary]:
 	return result
 
 
-## 相机 → 目标身体多个采样点的视线射线：命中墙体（wall_group）→ 收集其网格打洞看穿。
+## 相机 → 目标身体多个采样点的视线射线：命中墙体（wall_group）→ 为该角色在墙上记一个洞。
+## 同一堵墙被多个角色挡住时，每个角色都追加一个洞（不再互相覆盖），让所有人都能被看穿。
 ## 非墙体模型不参与处理（保持原样）。
-func _collect_for_target(space: PhysicsDirectSpaceState3D, target: Node3D, result: Dictionary[MeshInstance3D, Dictionary]) -> void:
+func _collect_for_target(space: PhysicsDirectSpaceState3D, target: Node3D, result: Dictionary[MeshInstance3D, Array]) -> void:
 	var cam_pos := _camera.global_position
 	var excludes: Array[RID] = []
 	_collect_target_rids(target, excludes)
@@ -96,10 +99,9 @@ func _collect_for_target(space: PhysicsDirectSpaceState3D, target: Node3D, resul
 	if dir.length() > 0.001:
 		dir = dir.normalized()
 	for mesh in hits:
-		result[mesh] = {
-			"origin": center,
-			"dir": dir,
-		}
+		if not result.has(mesh):
+			result[mesh] = []
+		result[mesh].append({"origin": center, "dir": dir})
 
 
 ## 检查节点自身或任意祖先是否在指定组中（碰撞体组常标在父/子节点上）
@@ -147,9 +149,9 @@ func _collect_target_rids(node: Node, rids: Array[RID]) -> void:
 
 ## 让遮挡物 fade 逼近目标值（1=应虚化，0=已离开），归零时还原材质。
 ## keys() 返回快照数组，迭代中直接 erase 字典项是安全的。
-func _update_fades(active: Dictionary[MeshInstance3D, Dictionary], delta: float) -> void:
+func _update_fades(active: Dictionary[MeshInstance3D, Array], delta: float) -> void:
 	for mesh in active.keys():
-		_infos[mesh] = active[mesh]  # 虚化信息以最新为准（kind/轴可能切换）
+		_infos[mesh] = active[mesh]  # 该墙的洞数组以最新扫描为准（多角色会累积多个洞）
 		_fades[mesh] = _fades.get(mesh, 0.0)
 	for mesh in _fades.keys():
 		_sync_shadow_dupe(mesh)  # 若墙移动，副本跟随
@@ -163,8 +165,9 @@ func _update_fades(active: Dictionary[MeshInstance3D, Dictionary], delta: float)
 			_apply_override(mesh, t, _infos[mesh])
 
 
-## 施加（或复用）墙体洞型看穿 shader：fade 淡入淡出，同时用只投阴影副本保住阴影。
-func _apply_override(mesh: MeshInstance3D, t: float, info: Dictionary) -> void:
+## 施加（或复用）墙体洞型看穿 shader：fade 淡入淡出，同一堵墙可打多个洞（每个被挡角色一个），
+## 同时用只投阴影副本保住阴影。
+func _apply_override(mesh: MeshInstance3D, t: float, holes: Array) -> void:
 	var mat := mesh.material_override as ShaderMaterial
 	if mat == null or mat.shader != SHATTER_SHADER:
 		_ensure_shadow_dupe(mesh)  # 墙半透明会破坏阴影，需只投阴影副本
@@ -181,8 +184,19 @@ func _apply_override(mesh: MeshInstance3D, t: float, info: Dictionary) -> void:
 			mat.set_shader_parameter("albedo_tex", tex)
 		mesh.material_override = mat
 	mat.set_shader_parameter("fade", t)
-	mat.set_shader_parameter("axis_origin", info.get("origin", Vector3.ZERO))
-	mat.set_shader_parameter("axis_dir", info.get("dir", Vector3.FORWARD))
+	# 多角色打洞：把每个洞的 origin/dir 填入数组，hole_count 限制实际生效数量。
+	var n := mini(holes.size(), MAX_HOLES)
+	var origins := PackedVector3Array()
+	var dirs := PackedVector3Array()
+	origins.resize(MAX_HOLES)
+	dirs.resize(MAX_HOLES)
+	for i in range(n):
+		var h: Dictionary = holes[i]
+		origins[i] = h.get("origin", Vector3.ZERO)
+		dirs[i] = h.get("dir", Vector3.FORWARD)
+	mat.set_shader_parameter("axis_origins", origins)
+	mat.set_shader_parameter("axis_dirs", dirs)
+	mat.set_shader_parameter("hole_count", n)
 	mat.set_shader_parameter("core_radius", core_radius)
 	mat.set_shader_parameter("falloff", falloff)
 
