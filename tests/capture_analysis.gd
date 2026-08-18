@@ -28,7 +28,7 @@ func _run() -> void:
 		await process_frame
 
 	for ch in get_nodes_in_group("character"):
-		var name: String = ch.get("character_name")
+		var name: String = ch.get("identity_name")
 		var vp: SubViewport = ch.get_node_or_null("CharacterViewport")
 		if vp == null:
 			continue

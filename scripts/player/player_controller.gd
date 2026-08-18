@@ -276,10 +276,9 @@ func _navigate_to(point: Vector3) -> void:
 		_character.move_to(point)
 		_show_path(PackedVector3Array([from, to]), point)
 	else:
-		# 与角色内部 move_along_path 相同的 Chaikin 细分，保证可视化线路与轨迹一致
-		var smooth := HD2DCharacter.smooth_path(path)
-		_character.move_along_path(smooth)
-		_show_path(smooth, point)
+		# 平滑交给 move_along_path 内部统一处理，避免双重平滑把路径过度切圆、缩短距离导致速度档位偏低
+		_character.move_along_path(path)
+		_show_path(HD2DCharacter.smooth_path(path), point)
 
 
 ## 当前选中对象（供查询）。

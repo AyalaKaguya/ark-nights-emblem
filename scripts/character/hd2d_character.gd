@@ -12,31 +12,58 @@ const CollisionRids := preload("res://scripts/util/collision_rids.gd")
 const ARRIVE_DIST := 0.05
 ## 朝向收敛判定（度）。
 const FACING_EPS_DEG := 0.25
-## 找不到碰撞体时的体积半径兜底（米）。
+## 接近目标此距离内直接对准方向（米），避免低速移动在最后阶段绕弧线/方向抖动。
+const ALIGN_DIST := 1.0
+## 角色碰撞箱默认半径（米）：body_radius 的默认值，也是角色间避让时对方无 _body_radius 方法的兜底。
 const DEFAULT_BODY_RADIUS := 0.35
+## 移动阶段：加速 → 巡航 → 减速（普通角色）或滑行（惯性角色）。
+enum MovePhase { IDLE, ACCEL, CRUISE, DECEL, COAST }
 
-@export var skeleton_data: SpineSkeletonDataResource  ## 角色当前 Spine 骨骼数据。注意：运行时切换骨骼必须调用 set_skeleton_data()，直接赋值不会更新 SpineSprite。
-@export var anchor_height := 1.2  # 立牌中心相对底部的高度
+## 角色当前 Spine 骨骼数据。注意：运行时切换骨骼必须调用 set_skeleton_data()，直接赋值不会更新 SpineSprite。
+@export var skeleton_data: SpineSkeletonDataResource
+
+@export_group("碰撞箱")
+## 角色碰撞箱半径（米）：碰撞胶囊体、脚底指示器（indicator_match_body=true 时）与角色间避让共用此半径。
+@export_range(0.1, 2.0, 0.05) var body_radius := DEFAULT_BODY_RADIUS
+
+@export_group("立牌")
+## 立牌中心相对脚底的高度（米）。
+@export_range(0.0, 3.0, 0.05) var anchor_height := 1.2
+## 立牌整体缩放系数（1.0 = 原始尺寸；发光层与投影阴影同步缩放）。
+@export_range(0.1, 5.0, 0.05) var billboard_scale := 1.0
 ## 立牌竖直方向向镜头（相机）倾斜的最大角度（度）。
 @export_range(0.0, 60.0, 1.0, "degrees") var max_tilt_deg := 15.0
+
+@export_group("朝向")
+## 角色当前逻辑朝向（度）。运行时由移动/面向逻辑驱动，也可手动设置。
 @export_range(-180.0, 180.0, 1.0, "degrees") var facing_deg := 0.0
-## 镜像翻转判定偏移：阈值从正左侧（相对相机右向 90°）再向右偏此角度才翻转。
+## 镜像翻转判定偏移（度）：阈值从正左侧再向右偏此角度才翻转，避免临界抖动。
 @export_range(0.0, 90.0, 1.0, "degrees") var flip_bias_deg := 15.0
+
+@export_group("脚底指示器")
 ## 脚底方向指示器是否可见。
 @export var indicator_visible := true
-## 脚底圆形指示器是否跟随碰撞胶囊体半径（表示角色体积）。
+## 脚底圆形指示器是否跟随碰撞箱半径（body_radius，表示角色体积）。
 @export var indicator_match_body := true
 ## 手动指示器半径（米，indicator_match_body=false 时生效）。
-@export var indicator_radius := 0.5
-@export var indicator_ring_width := 0.08
+@export_range(0.1, 5.0, 0.05) var indicator_radius := 0.5
+## 指示器圆环宽度（米）。
+@export_range(0.01, 1.0, 0.01) var indicator_ring_width := 0.08
+## 指示器箭头张角（度），控制箭头的锐利程度。
 @export_range(5.0, 80.0, 1.0, "degrees") var indicator_arrow_angle_deg := 30.0
+## 指示器颜色（含透明度）。
 @export var indicator_color := Color(0.95, 0.95, 0.95, 0.9)
-@export var indicator_height := 0.02
+## 指示器离地高度（米），避免与地面/投影阴影 z-fighting。
+@export_range(0.0, 0.5, 0.005) var indicator_height := 0.02
+
+@export_group("投影阴影")
 ## 投影阴影开关。
 @export var shadow_enabled := true
-## 投影阴影长度 = 立牌高度 × shadow_squash。
+## 投影阴影长度 = 立牌高度 × shadow_squash（越小越像正午，越大越像斜射拉长）。
 @export_range(0.0, 1.0, 0.05) var shadow_squash := 0.5
-## 外发光特效开关。
+
+@export_group("外发光")
+## 外发光特效开关（仅在鼠标悬停时显现）。
 @export var glow_enabled := true
 ## 外发光颜色。
 @export var glow_color := Color(1.0, 0.84, 0.2, 1.0)
@@ -44,26 +71,46 @@ const DEFAULT_BODY_RADIUS := 0.35
 @export_range(0.0, 80.0, 0.5) var glow_radius := 24.0
 ## 外发光强度。
 @export_range(0.0, 8.0, 0.1) var glow_intensity := 2.0
-## 最慢移动速度（米/秒，即将到达时）。
-@export var min_move_speed := 1.5
-## 最快移动速度（米/秒，距离达到 speed_ramp_dist 时）。
-@export var max_move_speed := 5.0
-## 速度坡度距离（米）：移动总距离达到此值后按最快速度前进；更近则按比例减慢。
-@export var speed_ramp_dist := 8.0
-## 可选速度曲线：采样 t∈[0,1]（距目标 0→speed_ramp_dist）映射为速度比例；留空用 smoothstep。
-@export var speed_curve: Curve
+
+@export_group("移动")
+## 缓步速度（米/秒）：移动总距离 < crawl_dist 时采用。
+@export_range(0.1, 10.0, 0.1) var crawl_speed := 0.8
+## 走路速度（米/秒）：移动总距离在 [crawl_dist, walk_dist) 区间时采用。
+@export_range(0.1, 20.0, 0.1) var walk_speed := 2.0
+## 跑步速度（米/秒）：移动总距离 >= walk_dist 时采用。
+@export_range(0.1, 30.0, 0.1) var run_speed := 5.0
+## 缓步距离阈值（米）：移动总距离小于此值时采用缓步速度。
+@export_range(0.5, 20.0, 0.5) var crawl_dist := 2.0
+## 走路距离阈值（米）：移动总距离小于此值（且 >= crawl_dist）时采用走路速度，否则跑步。
+@export_range(1.0, 50.0, 1.0) var walk_dist := 10.0
+## 加速时间（秒）：开始移动时从 0 加速到档位速度的时间。
+@export_range(0.05, 3.0, 0.05) var accel_time := 0.3
+## 减速时间（秒）：普通角色接近终点时从当前速度减速到 0 的时间。
+@export_range(0.05, 3.0, 0.05) var decel_time := 0.4
+## 加速曲线（0→1 缓动，控制起步节奏；留空用 smoothstep）。
+@export var accel_curve: Curve
+## 减速曲线（0→1 缓动，控制收尾节奏；留空用 smoothstep）。
+@export var decel_curve: Curve
+## 惯性（秒）：到达终点后继续滑行的持续时间，滑行距离随速度增加。0=精确停下（普通角色），>0=滑行（轮椅/飞行角色）。
+@export_range(0.0, 3.0, 0.05) var inertia := 0.0
 ## 移动方向转向速度（度/秒）：行进方向渐进旋转，避免突发大角度转向。
 @export_range(10.0, 1080.0, 10.0, "degrees") var turn_speed := 480.0
-## 视觉朝向转向速度（度/秒）：脚底箭头与立绘朝向的渐进旋转（比移动方向转得更快）。
+## 视觉朝向转向速度（度/秒）：脚底箭头与立绘朝向的渐进旋转。
 @export_range(10.0, 1440.0, 10.0, "degrees") var facing_speed := 720.0
-## 角色显示名（状态面板用）。
-@export var character_name := "角色"
-## 侧面悬浮状态面板是否可见（内置开关）。
+## Move 动画正常播放（time_scale=1）对应的基准移动速度（米/秒）。
+@export_range(0.5, 5.0, 0.1) var move_anim_reference_speed := 1.0
+## 动画速度对移速的灵敏度：移速每偏离基准 1 米/秒，time_scale 增减此值。
+@export_range(0.1, 1.0, 0.05) var move_anim_speed_sensitivity := 0.5
+
+@export_group("状态面板")
+## 角色标识名（仅用于识别/调试是哪个角色，不显示在状态面板）。
+@export var identity_name := "角色"
+## 侧面悬浮状态面板是否可见。
 @export var show_status_panel := true
 ## 状态面板相对角色的水平偏移（米，相机右向）。
-@export var status_panel_side := 1.5
-## 状态面板中心相对底部的高度（米）。
-@export var status_panel_height := 2.2
+@export_range(0.0, 10.0, 0.1) var status_panel_side := 1.5
+## 状态面板中心相对脚底的高度（米）。
+@export_range(0.0, 10.0, 0.1) var status_panel_height := 2.2
 
 @onready var viewport: SubViewport = $CharacterViewport
 @onready var spine_sprite: SpineSprite = $CharacterViewport/SpineSprite
@@ -76,7 +123,12 @@ var _glow_amount := 0.0   # 当前发光强度（平滑淡入淡出）
 var _hovered := false      # 鼠标是否悬停在角色上
 var _state_machine: CharacterStateMachine  # 状态机（动画驱动）
 var _move_target := Vector3.ZERO
-var _move_total_dist := 0.0      # 本次移动的总距离（米），用于决定全程速度（近走远跑）
+var _move_total_dist := 0.0            # 本次移动的总距离（米），用于决定三档速度
+var _speed := 0.0                      # 当前实际移动速度（米/秒）
+var _target_speed := 0.0               # 本次移动的档位目标速度（缓步/走路/跑步）
+var _move_phase := MovePhase.IDLE      # 当前移动阶段
+var _phase_t := 0.0                    # 加速/减速阶段进度 0~1
+var _phase_start_speed := 0.0          # 减速/滑行起始速度
 var _has_move_target := false
 var _arrive_callback: Callable
 var _path := PackedVector3Array()
@@ -89,7 +141,6 @@ var _status_panel_root: Node3D
 var _status_panel_label: Label
 var _status_panel_vp: SubViewport
 var _cam_cache: Camera3D              # 相机引用缓存（避免每帧多次 get_camera_3d）
-var _pick_shape: CapsuleShape3D       # 拾取碰撞胶囊形状缓存（避免每帧节点查找）
 var _wall_rids_cache: Array[RID] = []  # occlusion_wall RID 缓存（墙体静态）
 var _wall_rids_valid := false
 var _hover_frame := 0                 # 悬停检测节流计数（每 4 帧检测一次）
@@ -100,7 +151,7 @@ func _ready() -> void:
 	if skeleton_data:
 		spine_sprite.skeleton_data_res = skeleton_data
 	add_to_group("character")
-	_cache_pick_shape()
+	_sync_collision_radius()
 	_setup_body_material()
 	_setup_glow()
 	_build_indicator()
@@ -163,27 +214,26 @@ func _update_billboard() -> void:
 	if horiz_len > 0.001:
 		var toward := horiz / horiz_len
 		up = (Vector3.UP * cos(tilt) + toward * sin(tilt)).normalized()
-	var basis := Basis(right, up, right.cross(up).normalized())
+	var s := billboard_scale
+	var basis := Basis(right, up, right.cross(up).normalized()).scaled(Vector3(s, s, s))
 	billboard.global_basis = basis
-	billboard.global_position = origin + up * anchor_height
+	billboard.global_position = origin + up * anchor_height * s
 	glow_overlay.global_basis = basis
-	glow_overlay.global_position = origin + up * anchor_height
+	glow_overlay.global_position = origin + up * anchor_height * s
 
 
-## 缓存拾取碰撞体形状（避免每帧节点路径查找）。
-func _cache_pick_shape() -> void:
+## 把 body_radius 同步到拾取碰撞胶囊体（半径单一来源：脚本属性）。
+func _sync_collision_radius() -> void:
 	var col := get_node_or_null("PickBody/CollisionShape3D")
 	if col is CollisionShape3D:
 		var shape := (col as CollisionShape3D).shape
 		if shape is CapsuleShape3D:
-			_pick_shape = shape as CapsuleShape3D
+			(shape as CapsuleShape3D).radius = body_radius
 
 
-## 从缓存的角色碰撞胶囊体读取体积半径（水平圆半径）；找不到时回退默认值。
+## 角色碰撞箱半径（米）：脚底指示器（indicator_match_body=true 时）与角色间避让共用。
 func _body_radius() -> float:
-	if _pick_shape:
-		return _pick_shape.radius
-	return DEFAULT_BODY_RADIUS
+	return body_radius
 
 
 ## 获取当前相机（缓存引用，避免每帧多次 get_camera_3d()）。
@@ -246,6 +296,7 @@ func _setup_projected_shadow() -> void:
 	var size := Vector2(2.4, 2.4)
 	if billboard.mesh is QuadMesh:
 		size = (billboard.mesh as QuadMesh).size
+	size *= billboard_scale
 	var shadow := ProjectedShadow.new()
 	shadow.name = "ProjectedShadow"
 	add_child(shadow)
@@ -381,6 +432,19 @@ func play_animation(anim_name: String, loop: bool = true) -> void:
 		state.set_animation(anim_name, loop)
 
 
+## 设置 Spine 动画全局播放速度倍率。移动时用它让 Move 动画速度跟随实际移动速度，消除低速脚滑。
+func _set_anim_time_scale(scale: float) -> void:
+	var state: SpineAnimationState = spine_sprite.get_animation_state()
+	if state:
+		state.set_time_scale(scale)
+
+
+## 让 Move 动画播放速度跟随实际移动速度（带基准修正：低速保底、高速快放）。
+func _sync_move_anim_speed() -> void:
+	var anim_scale := 1.0 - (move_anim_reference_speed - _speed) * move_anim_speed_sensitivity
+	_set_anim_time_scale(clampf(anim_scale, 0.25, 3.0))
+
+
 func play_move() -> void:
 	set_state(CharacterState.Id.MOVE)
 
@@ -425,8 +489,8 @@ func _on_one_shot_finished(_state: int) -> void:
 
 
 ## 移动到目标点（保持当前地面高度），到达后回 IDLE 并可回调。
-## 移动方向与视觉朝向均为角速度受限的渐进转向，轨迹平滑无突变。
-## 速度由本次移动总距离决定：近距离慢走、远距离跑动，全程恒定。
+## 速度按移动总距离分三档：缓步（< crawl_dist）/ 走路（< walk_dist）/ 跑步（>= walk_dist）。
+## 起步曲线加速、收尾曲线减速；惯性角色（inertia>0）到达后滑行一段再停。
 func move_to(target: Vector3, arrive: Callable = Callable()) -> void:
 	# 清空旧的导航路径，避免到达直行点后继续把旧路径走完（与 stop_moving 对称）。
 	_path = PackedVector3Array()
@@ -439,12 +503,18 @@ func move_to(target: Vector3, arrive: Callable = Callable()) -> void:
 	_has_move_target = true
 	_arrive_callback = arrive
 	_move_dir = _dir_to(_move_target)
+	_target_speed = _target_speed_for(_move_total_dist)
+	_move_phase = MovePhase.ACCEL
+	_phase_t = 0.0
 	set_state(CharacterState.Id.MOVE)
 
 
-## 停止移动并回到待机。
+## 停止移动并回到待机（立即停止，不滑行）。
 func stop_moving() -> void:
 	_has_move_target = false
+	_speed = 0.0
+	_move_phase = MovePhase.IDLE
+	_set_anim_time_scale(1.0)
 	_arrive_callback = Callable()
 	_path = PackedVector3Array()
 	_path_callback = Callable()
@@ -455,7 +525,7 @@ func stop_moving() -> void:
 
 ## 沿导航路径逐点移动（由 PlayerController 寻路后调用）。
 ## 路径先做 Chaikin 细分平滑，拐角变圆滑；段间转向渐进。
-## 速度按整条路径总长度决定（近走远跑），与路径点间距无关。
+## 速度按整条路径总长度分三档（缓步/走路/跑步），中间路径点平滑穿过不停顿。
 func move_along_path(path: PackedVector3Array, arrive: Callable = Callable()) -> void:
 	_path = smooth_path(path)
 	_path_index = 0
@@ -465,6 +535,9 @@ func move_along_path(path: PackedVector3Array, arrive: Callable = Callable()) ->
 	_move_total_dist = _path_length(_path)
 	if _advance_path_point():
 		_move_dir = _dir_to(_move_target)
+		_target_speed = _target_speed_for(_move_total_dist)
+		_move_phase = MovePhase.ACCEL
+		_phase_t = 0.0
 		set_state(CharacterState.Id.MOVE)
 
 
@@ -486,40 +559,109 @@ func _advance_path_point() -> bool:
 	return false
 
 
-## 移动逻辑：朝目标点前进（移动方向角速度受限渐进旋转，走出平滑弧线），
-## 速度按距目标距离曲线调节（近慢远快），视觉朝向渐进跟随，到达后回 IDLE 并回调。
+## 移动逻辑：阶段状态机（加速 → 巡航 → 减速/滑行）。
+## 起步曲线加速、收尾曲线减速；惯性角色到达后滑行。视觉朝向渐进跟随移动方向。
 func _update_movement(delta: float) -> void:
 	if not _has_move_target:
 		return
+
+	# 惯性滑行阶段：沿惯性方向继续飘，速度摩擦衰减到 0
+	if _move_phase == MovePhase.COAST:
+		var friction := _phase_start_speed / maxf(inertia, 0.001)
+		_speed = maxf(_speed - friction * delta, 0.0)
+		global_position += _slide_around_characters(_move_dir * (_speed * delta))
+		_sync_move_anim_speed()
+		if _speed <= 0.0:
+			_speed = 0.0
+			_finish_movement()
+		return
+
 	var to_target := _move_target - global_position
 	to_target.y = 0.0
 	var dist := to_target.length()
+	var is_final_leg := _path.is_empty() or _path_index >= _path.size() - 1
+
+	# 到达判定（移动前）
 	if dist < ARRIVE_DIST:
-		global_position = _move_target
-		_has_move_target = false
-		if _path.size() > 0:
-			# 推进交给 _advance_path_point（内部会跳过已到达点），避免重复自增造成跳点。
-			if _advance_path_point():
-				_move_dir = _dir_to(_move_target)
-				return  # 继续沿路径走，保持 MOVE 状态
-			set_state(CharacterState.Id.IDLE)
-			return
-		var cb := _arrive_callback
-		_arrive_callback = Callable()
-		set_state(CharacterState.Id.IDLE)
-		if cb.is_valid():
-			cb.call()
+		_on_reach_target()
 		return
-	var step := _current_speed(_move_total_dist) * delta
+
+	# 推进阶段，更新速度
+	match _move_phase:
+		MovePhase.ACCEL:
+			_phase_t += delta / maxf(accel_time, 0.001)
+			if _phase_t >= 1.0:
+				_phase_t = 1.0
+				_speed = _target_speed
+				_move_phase = MovePhase.CRUISE
+			else:
+				_speed = _target_speed * _sample_ease(accel_curve, _phase_t)
+		MovePhase.CRUISE:
+			_speed = _target_speed
+			# 普通角色接近最终目标时提前减速；惯性角色不主动减速，靠滑行
+			if is_final_leg and inertia <= 0.0 and dist <= _decel_distance(_speed):
+				_move_phase = MovePhase.DECEL
+				_phase_t = 0.0
+				_phase_start_speed = _speed
+		MovePhase.DECEL:
+			_phase_t += delta / maxf(decel_time, 0.001)
+			_speed = _phase_start_speed * (1.0 - _sample_ease(decel_curve, _phase_t))
+			if _phase_t >= 1.0:
+				_on_reach_target()
+				return
+
+	# 移动
+	var step := _speed * delta
 	if step > dist:
 		step = dist
-	# 移动方向朝目标方向渐进旋转（角速度受限），避免突发大角度折向
-	_move_dir = _steer_dir(_move_dir, to_target.normalized(), turn_speed, delta)
+	if dist <= ALIGN_DIST:
+		_move_dir = to_target.normalized()
+	else:
+		# 移动方向朝目标方向渐进旋转（角速度受限），避免突发大角度折向
+		_move_dir = _steer_dir(_move_dir, to_target.normalized(), turn_speed, delta)
 	# 角色间碰撞：移动向量经水平圆滑动避让，防止互相穿过
 	var move_vec := _slide_around_characters(_move_dir * step)
 	global_position += move_vec
 	# 视觉朝向跟随移动方向渐进旋转（到达后继续转到最终朝向）
 	_set_facing_target_dir(_move_dir)
+	_sync_move_anim_speed()
+
+
+## 到达目标后的处理：最终目标精确到位，中间路径点平滑通过（不瞬移，避免密集路径点间的跳变卡顿）。
+func _on_reach_target() -> void:
+	if _path.size() > 0:
+		# 推进交给 _advance_path_point（内部会跳过已到达点），避免重复自增造成跳点。
+		if _advance_path_point():
+			_move_dir = _dir_to(_move_target)
+			return  # 中间路径点：不瞬移，平滑通过
+		# 路径走完（_advance_path_point 已触发 _path_callback）→ 最终目标，精确到位
+		global_position = _move_target
+		if inertia > 0.0:
+			_move_phase = MovePhase.COAST
+			_phase_start_speed = _speed
+			return
+		_finish_movement()
+		return
+	# move_to 到达 → 最终目标，精确到位
+	global_position = _move_target
+	if inertia > 0.0:
+		_move_phase = MovePhase.COAST
+		_phase_start_speed = _speed
+		return
+	_finish_movement()
+
+
+## 移动彻底结束：清零状态、恢复动画速度、回到 IDLE 并触发回调。
+func _finish_movement() -> void:
+	_speed = 0.0
+	_has_move_target = false
+	_move_phase = MovePhase.IDLE
+	_set_anim_time_scale(1.0)
+	var cb := _arrive_callback
+	_arrive_callback = Callable()
+	set_state(CharacterState.Id.IDLE)
+	if cb.is_valid():
+		cb.call()
 
 
 ## 角色间碰撞绕行（水平 2D 圆-圆）：目标位置进入对方体积时，径向钳到圆边缘，
@@ -598,16 +740,25 @@ func _set_facing_target_dir(dir: Vector3) -> void:
 	_has_facing_target = true
 
 
-## 根据本次移动总距离计算移动速度：近慢远快，经速度曲线（或 smoothstep）映射。
-## 速度在整次移动中保持恒定，到达时由 step>dist 钳制精确停点。
-func _current_speed(dist: float) -> float:
-	var t := clampf(dist / maxf(speed_ramp_dist, 0.001), 0.0, 1.0)
-	var k := 1.0
-	if speed_curve:
-		k = speed_curve.sample(t)
-	else:
-		k = t * t * (3.0 - 2.0 * t)  # smoothstep：近处起步慢、远处快速
-	return lerpf(min_move_speed, max_move_speed, k)
+## 三档目标速度：按移动总距离分档（缓步/走路/跑步）。
+func _target_speed_for(dist: float) -> float:
+	if dist < crawl_dist:
+		return crawl_speed
+	if dist < walk_dist:
+		return walk_speed
+	return run_speed
+
+
+## 曲线采样：优先用导出曲线，留空用 smoothstep 缓动（0→1）。
+func _sample_ease(curve: Curve, t: float) -> float:
+	if curve:
+		return curve.sample(clampf(t, 0.0, 1.0))
+	return t * t * (3.0 - 2.0 * t)  # smoothstep
+
+
+## 减速距离：以当前速度按减速曲线降到 0 所需的前进距离（smoothstep 平均速度 0.5）。
+func _decel_distance(speed: float) -> float:
+	return speed * decel_time * 0.5
 
 
 ## 计算路径的水平总长度（米），用于按总距离决定移动速度。
@@ -719,9 +870,9 @@ func _update_status_panel() -> void:
 			_status_panel_label.text = text
 
 
-## 面板文本：角色名 + 当前状态。
+## 面板文本：仅当前状态（identity_name 仅用于识别角色，不显示在此）。
 func _build_status_text() -> String:
-	return character_name + "\n" + CharacterState.NAMES.get(get_state(), "?")
+	return CharacterState.NAMES.get(get_state(), "?")
 
 
 ## 切换面板显隐（PlayerController 的 F1 调用）。
