@@ -44,10 +44,7 @@ func setup(tex: Texture2D, billboard_size: Vector2) -> void:
 	var m := material_override as StandardMaterial3D
 	if m:
 		m.albedo_texture = tex
-	var qm := mesh as QuadMesh
-	if qm:
-		qm.size = Vector2(billboard_size.x, billboard_size.y)
-	_update_from_light()
+	_update_from_light()   # 板尺寸/朝向统一由 _apply_light 计算
 
 
 ## 每帧读取主光；仅当光源方向变化时重算板的朝向/位置。
@@ -62,7 +59,6 @@ func _update_from_light() -> void:
 
 ## 把板面向主光，并让板的"高"方向随光倾斜（从光源看仍呈角色轮廓）。
 func _apply_light(to_light: Vector3) -> void:
-	var ly := clampf(to_light.y, 0.0, 1.0)   # sin(仰角)
 	var hx := -to_light.x
 	var hz := -to_light.z
 	var k := sqrt(hx * hx + hz * hz)          # cos(仰角)
@@ -75,8 +71,13 @@ func _apply_light(to_light: Vector3) -> void:
 	var P := Vector3(-S.z, 0.0, S.x)          # 水平垂直（宽方向）
 	# 高方向取“朝上偏”（to_light×P）：QuadMesh 的 V 是翻转的（V=0 在 +Y），取反让立绘头顶朝上。
 	var Y := to_light.cross(P)
+	var W := _billboard_size.x
 	var H := _billboard_size.y
+	var qm := mesh as QuadMesh
+	if qm:
+		# 高方向按 cos(仰角) 压缩（foreshorten），使板脚底边贴地、影子脚底对齐角色脚底。
+		qm.size = Vector2(W, H * k)
 	# 板局部：X=宽(U)，Y=高(V)，Z=法线（指向光源）
 	basis = Basis(P, Y, to_light)
-	# 板中心对齐角色竖直中点（= up * H/2 = ly*H/2*to_light + k*H/2*Y）
-	position = to_light * (ly * H * 0.5) + Y * (k * H * 0.5)
+	# 板脚底边落在父节点 origin（角色脚底），板中心 = Y * (H*k/2)
+	position = Y * (k * H * 0.5)
