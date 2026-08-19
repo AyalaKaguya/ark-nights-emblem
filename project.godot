@@ -14,6 +14,10 @@ config/name="ArkNights-Emblem"
 run/main_scene="res://node_3d.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
+[autoload]
+
+LightConfig="*res://scripts/effects/light_config.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"

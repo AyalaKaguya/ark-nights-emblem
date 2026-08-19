@@ -57,10 +57,8 @@ enum MovePhase { IDLE, ACCEL, CRUISE, DECEL, COAST }
 @export_range(0.0, 0.5, 0.005) var indicator_height := 0.02
 
 @export_group("投影阴影")
-## 投影阴影开关。
+## 投影阴影开关（隐形阴影板：按立绘 alpha 裁剪、只投阴影，交给引擎阴影系统处理）。
 @export var shadow_enabled := true
-## 投影阴影长度 = 立牌高度 × shadow_squash（越小越像正午，越大越像斜射拉长）。
-@export_range(0.0, 1.0, 0.05) var shadow_squash := 0.5
 
 @export_group("外发光")
 ## 外发光特效开关（仅在鼠标悬停时显现）。
@@ -288,8 +286,8 @@ func _build_indicator() -> void:
 	direction_indicator.position.y = indicator_height
 
 
-## 投影阴影：把角色立绘沿阴影方向压扁、铺在脚底地面，得到与角色轮廓一致的投影阴影。
-## 阴影跟随角色水平移动（父节点 origin 即脚底），长度 = 立牌高度 × shadow_squash。
+## 投影阴影：用一块按立绘 alpha 裁剪的隐形板（SHADOWS_ONLY）投射真实阴影，
+## 交给 Godot 阴影贴图处理（会爬上墙、墙背面无阴影、重叠不加深）。
 func _setup_projected_shadow() -> void:
 	if not shadow_enabled:
 		return
@@ -301,7 +299,6 @@ func _setup_projected_shadow() -> void:
 	shadow.name = "ProjectedShadow"
 	add_child(shadow)
 	shadow.setup(viewport.get_texture(), size)
-	shadow.set_squash(shadow_squash)
 
 
 ## 设置角色逻辑朝向（度/弧度），或让箭头朝向某世界位置（自动投影水平面）。
