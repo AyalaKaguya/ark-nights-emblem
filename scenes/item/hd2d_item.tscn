@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/item/hd2d_item.gd" id="1_item"]
+
+[node name="HD2DItem" type="Node3D"]
+script = ExtResource("1_item")
+groups = ["occlusion_target"]
+
+[node name="ItemViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+size = Vector2i(512, 512)
+
+[node name="Sprite2D" type="Sprite2D" parent="ItemViewport"]
+position = Vector2(256, 256)
+centered = true
+
+[node name="Billboard" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="GlowOverlay" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)

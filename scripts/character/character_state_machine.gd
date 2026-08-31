@@ -18,9 +18,11 @@ var _current: int = CharacterState.Id.IDLE
 var _return_state: int = CharacterState.Id.IDLE
 var _idle_timer := 0.0
 var _idle_next_trigger := 0.0
+## 状态 → 动画名覆盖表（由宿主按骨骼注入；未覆盖的状态回退到 CharacterState.ANIMATIONS）。
+var anim_map := {}
 
-## IDLE 状态下随机播放 Interact 小动作（与交互对象无关）。
-var idle_interact_enabled := true
+## IDLE 状态下随机播放 Interact 小动作（与交互对象无关）。默认关闭：仅由表现层在"选中角色瞬间"主动播放一次。
+var idle_interact_enabled := false
 var idle_interact_min := 4.0   # 随机触发的最短间隔（秒）
 var idle_interact_max := 10.0  # 随机触发的最长间隔（秒）
 
@@ -71,7 +73,7 @@ func update(delta: float) -> void:
 
 
 func _animation_for(state: int) -> String:
-	return CharacterState.ANIMATIONS.get(state, "Relax")
+	return anim_map.get(state, CharacterState.ANIMATIONS.get(state, "Relax"))
 
 
 func _is_looping(state: int) -> bool:

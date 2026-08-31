@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+uid="uid://f01s25dtrenb"
+path="res://.godot/imported/enemy_1000_gopro.spine-json-d8d8f33400eb0c48c35918f1eca53b92.spjson"
+
+[deps]
+
+source_file="res://assets/enemy/enemy_1000_gopro/enemy_1000_gopro.spine-json"
+dest_files=["res://.godot/imported/enemy_1000_gopro.spine-json-d8d8f33400eb0c48c35918f1eca53b92.spjson"]
+
+[params]
+

@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dd67pkee6rkn8"
+path="res://.godot/imported/enemy_1001_bigbo.atlas-7e7d5193424427bc372d771db1abb614.spatlas"
+
+[deps]
+
+source_file="res://assets/enemy/enemy_1001_bigbo/enemy_1001_bigbo.atlas"
+dest_files=["res://.godot/imported/enemy_1001_bigbo.atlas-7e7d5193424427bc372d771db1abb614.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

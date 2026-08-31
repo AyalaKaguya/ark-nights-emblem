@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.json"
+type="SpineSkeletonFileResource"
+uid="uid://ciwyxk28u77u"
+path="res://.godot/imported/enemy_1001_bigbo.spine-json-2cc858b305fbc5b0599ca0b765c08e51.spjson"
+
+[deps]
+
+source_file="res://assets/enemy/enemy_1001_bigbo/enemy_1001_bigbo.spine-json"
+dest_files=["res://.godot/imported/enemy_1001_bigbo.spine-json-2cc858b305fbc5b0599ca0b765c08e51.spjson"]
+
+[params]
+

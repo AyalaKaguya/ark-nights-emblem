@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" format=3]
+
+[ext_resource type="SpineAtlasResource" path="res://assets/character/char_003_kalts/build/build_char_003_kalts.atlas" id="1"]
+[ext_resource type="SpineSkeletonFileResource" path="res://assets/character/char_003_kalts/build/build_char_003_kalts.spine-json" id="2"]
+
+[resource]
+atlas_res = ExtResource("1")
+skeleton_file_res = ExtResource("2")

@@ -11,12 +11,14 @@ config_version=5
 [application]
 
 config/name="ArkNights-Emblem"
-run/main_scene="res://node_3d.tscn"
+run/main_scene="res://scenes/game/game.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
 LightConfig="*res://scripts/effects/light_config.gd"
+GameState="*res://scripts/game/game_state.gd"
+InputRouter="*res://scripts/game/input_router.gd"
 
 [display]
 

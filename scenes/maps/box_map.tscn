@@ -1,0 +1,75 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/interactable.gd" id="1"]
+
+[sub_resource type="PlaneMesh" id="ground_mesh"]
+size = Vector2(24, 24)
+
+[sub_resource type="BoxShape3D" id="ground_col"]
+size = Vector3(24, 0.4, 24)
+
+[sub_resource type="StandardMaterial3D" id="ground_mat"]
+albedo_color = Color(0.36, 0.38, 0.4, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="box_mat"]
+albedo_color = Color(0.5, 0.47, 0.62, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="box_mesh"]
+material = SubResource("box_mat")
+size = Vector3(1.5, 2, 1.5)
+
+[sub_resource type="BoxShape3D" id="box_col"]
+size = Vector3(1.5, 2, 1.5)
+
+[sub_resource type="BoxMesh" id="exit_mesh"]
+size = Vector3(0.8, 1.4, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="exit_mat"]
+albedo_color = Color(0.4, 0.85, 0.55, 1)
+emission_enabled = true
+emission = Color(0.3, 0.8, 0.5, 1)
+emission_energy_multiplier = 1.5
+
+[node name="BoxMap" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="." groups=["ground"]]
+mesh = SubResource("ground_mesh")
+material_override = SubResource("ground_mat")
+
+[node name="GroundBody" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/GroundBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+shape = SubResource("ground_col")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." groups=["navigation_region"]]
+
+[node name="ObstacleA" type="StaticBody3D" parent="." groups=["nav_obstacle", "occlusion_wall"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+
+[node name="Mesh" type="MeshInstance3D" parent="ObstacleA"]
+mesh = SubResource("box_mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleA"]
+shape = SubResource("box_col")
+
+[node name="ObstacleB" type="StaticBody3D" parent="." groups=["nav_obstacle", "occlusion_wall"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -4)
+
+[node name="Mesh" type="MeshInstance3D" parent="ObstacleB"]
+mesh = SubResource("box_mesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleB"]
+shape = SubResource("box_col")
+
+[node name="SafeExit" type="Node3D" parent="." groups=["safe_exit"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
+script = ExtResource("1")
+prompt_text = "安全入口（返回营地）"
+
+[node name="Mesh" type="MeshInstance3D" parent="SafeExit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mesh = SubResource("exit_mesh")
+material_override = SubResource("exit_mat")

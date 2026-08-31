@@ -8,6 +8,7 @@ const CharacterStateMachine := preload("res://scripts/character/character_state_
 const OUTLINE_SHADER := preload("res://scripts/shaders/outline.gdshader")
 const ProjectedShadow := preload("res://scripts/effects/projected_shadow.gd")
 const CollisionRids := preload("res://scripts/util/collision_rids.gd")
+const RpgCamera := preload("res://scripts/camera/rpg_camera.gd")
 ## 到达判定距离（米）。
 const ARRIVE_DIST := 0.05
 ## 朝向收敛判定（度）。
@@ -99,6 +100,10 @@ enum MovePhase { IDLE, ACCEL, CRUISE, DECEL, COAST }
 @export_range(0.5, 5.0, 0.1) var move_anim_reference_speed := 1.0
 ## 动画速度对移速的灵敏度：移速每偏离基准 1 米/秒，time_scale 增减此值。
 @export_range(0.1, 1.0, 0.05) var move_anim_speed_sensitivity := 0.5
+## 角色间避让前瞻距离（米）：前方此距离内的其他角色会触发绕行。
+@export_range(0.2, 5.0, 0.1) var avoid_lookahead := 1.2
+## 角色间避让强度（越大绕行越明显）。
+@export_range(0.0, 2.0, 0.05) var avoid_strength := 0.9
 
 @export_group("状态面板")
 ## 角色标识名（仅用于识别/调试是哪个角色，不显示在状态面板）。
@@ -206,12 +211,20 @@ func _update_billboard() -> void:
 	var to_cam := cam.global_position - origin
 	var horiz := Vector3(to_cam.x, 0.0, to_cam.z)
 	var horiz_len := horiz.length()
-	var elev := atan2(to_cam.y, horiz_len)  # 相机相对立牌的仰角
-	var tilt := clampf(elev, 0.0, deg_to_rad(max_tilt_deg))  # 只向后仰，最多 max_tilt_deg
+	var elev := atan2(to_cam.y, horiz_len)  # 相机相对立牌的仰角（近似等于相机俯仰角）
+	# 低视角保持竖直，镜头抬高后逐渐向后仰，到相机最高俯仰角时达到 max_tilt_deg。
+	# 映射区间直接取自 RpgCamera 的 min_pitch/max_pitch，自动跟随相机配置。
+	var zero_deg := 12.0
+	var full_deg := 45.0
+	if cam is RpgCamera:
+		zero_deg = (cam as RpgCamera).min_pitch
+		full_deg = (cam as RpgCamera).max_pitch
+	var t := clampf(inverse_lerp(zero_deg, full_deg, rad_to_deg(elev)), 0.0, 1.0)
+	var tilt := deg_to_rad(lerpf(0.0, max_tilt_deg, t))
 	var up := Vector3.UP
 	if horiz_len > 0.001:
 		var toward := horiz / horiz_len
-		up = (Vector3.UP * cos(tilt) + toward * sin(tilt)).normalized()
+		up = (Vector3.UP * cos(tilt) - toward * sin(tilt)).normalized()
 	var s := billboard_scale
 	var basis := Basis(right, up, right.cross(up).normalized()).scaled(Vector3(s, s, s))
 	billboard.global_basis = basis
@@ -323,9 +336,22 @@ func set_skeleton_data(data: SpineSkeletonDataResource) -> void:
 	if spine_sprite:
 		spine_sprite.skeleton_data_res = data
 		if _state_machine:
-			_state_machine.set_state(CharacterState.Id.IDLE)
+			# 用 start() 强制播放当前状态动画（set_state 会因 next==current 短路，导致换骨骼后无动画）
+			_state_machine.start()
 		else:
 			play_animation(CharacterState.ANIMATIONS[CharacterState.Id.IDLE])
+
+
+## 按骨骼注入状态 → 动画名映射（敌人骨骼无 Relax/Move 等，需覆盖）。
+func set_animation_map(map: Dictionary) -> void:
+	if _state_machine:
+		_state_machine.anim_map = map
+
+
+## 关闭/开启待机随机小动作（敌人骨骼无 Interact 时关闭，避免一次性状态卡住）。
+func set_idle_interact_enabled(on: bool) -> void:
+	if _state_machine:
+		_state_machine.idle_interact_enabled = on
 
 
 ## 把 2D 视口渲染结果贴到 3D 立牌本体上（正常深度测试，被遮挡即隐藏）。
@@ -611,12 +637,13 @@ func _update_movement(delta: float) -> void:
 	var step := _speed * delta
 	if step > dist:
 		step = dist
+	var desired := _avoid_characters(to_target.normalized())
 	if dist <= ALIGN_DIST:
-		_move_dir = to_target.normalized()
+		_move_dir = desired
 	else:
 		# 移动方向朝目标方向渐进旋转（角速度受限），避免突发大角度折向
-		_move_dir = _steer_dir(_move_dir, to_target.normalized(), turn_speed, delta)
-	# 角色间碰撞：移动向量经水平圆滑动避让，防止互相穿过
+		_move_dir = _steer_dir(_move_dir, desired, turn_speed, delta)
+	# 角色间碰撞：移动向量经水平圆分离兜底，防止互相穿过
 	var move_vec := _slide_around_characters(_move_dir * step)
 	global_position += move_vec
 	# 视觉朝向跟随移动方向渐进旋转（到达后继续转到最终朝向）
@@ -661,9 +688,45 @@ func _finish_movement() -> void:
 		cb.call()
 
 
-## 角色间碰撞绕行（水平 2D 圆-圆）：目标位置进入对方体积时，径向钳到圆边缘，
-## 并把被削减的径向量转为切向偏移 → 角色沿对方边缘滑开绕行，而非原地卡住。
-## 恰好接触时（距离=半径和）双方都能切向错开，不再互相锁定。远离方向不受影响。
+## 局部避让：前方近距离有其他角色时，向目标方向一侧偏转，实现绕行。
+## 与 _slide_around_characters（纯径向分离）配合：前者负责转向绕行，后者负责防重叠兜底。
+func _avoid_characters(desired: Vector3) -> Vector3:
+	var dir2 := Vector2(desired.x, desired.z)
+	if dir2.length() < 0.001:
+		return desired
+	dir2 = dir2.normalized()
+	var pos2 := Vector2(global_position.x, global_position.z)
+	var self_r := _body_radius()
+	var out := dir2
+	for other in get_tree().get_nodes_in_group("character"):
+		if other == self or not (other is Node3D):
+			continue
+		var opos: Vector3 = (other as Node3D).global_position
+		var other_r := DEFAULT_BODY_RADIUS
+		if other.has_method("_body_radius"):
+			other_r = other._body_radius()
+		var min_d := self_r + other_r
+		var o2 := Vector2(opos.x, opos.z)
+		var to_other := o2 - pos2
+		var dist := to_other.length()
+		if dist < 0.001 or dist > min_d + avoid_lookahead:
+			continue
+		var n := to_other / dist
+		var forward := n.dot(dir2)
+		if forward < 0.2:
+			continue  # 不在前方，无需避让
+		var tangent := Vector2(-n.y, n.x)
+		if tangent.dot(dir2) < 0.0:
+			tangent = -tangent  # 取更靠近目标方向的一侧
+		var nearness := clampf(1.0 - (dist - min_d) / avoid_lookahead, 0.0, 1.0)
+		var blend := dir2 + tangent * (avoid_strength * nearness * forward)
+		if blend.length() > 0.001:
+			out = blend.normalized()
+	return Vector3(out.x, 0.0, out.y)
+
+
+## 角色间碰撞（水平 2D 圆-圆）：目标位置进入对方体积时，仅径向推出到圆边缘，
+## 保留切向分量让其沿边缘自然滑动，不再额外叠加切向偏移（避免偏向与相互卡死）。
 func _slide_around_characters(move_vec: Vector3) -> Vector3:
 	if move_vec.length() < 0.0001:
 		return move_vec
@@ -671,7 +734,6 @@ func _slide_around_characters(move_vec: Vector3) -> Vector3:
 	var f2 := Vector2(global_position.x, global_position.z)
 	var mv2 := Vector2(move_vec.x, move_vec.z)
 	var t2 := f2 + mv2  # 本帧目标位置
-	var step_len := mv2.length()
 	for other in get_tree().get_nodes_in_group("character"):
 		if other == self or not (other is Node3D):
 			continue
@@ -683,21 +745,14 @@ func _slide_around_characters(move_vec: Vector3) -> Vector3:
 		var d := t2 - o2
 		var dist := d.length()
 		var min_d := self_r + other_r
+		if dist >= min_d:
+			continue
+		# 圆心几乎重合：沿移动方向推出；静止则沿 +X 兜底
 		if dist < 0.001:
-			# 目标与对方完全重合：沿移动方向推到接触点（更自然）
-			if mv2.length() < 0.0001:
-				t2 = o2 + Vector2(min_d, 0.0)
-			else:
-				t2 = o2 + mv2.normalized() * min_d
-		elif dist < min_d:
-			# 径向钳到圆边缘，削减量转切向（绕行）：clamped + 切向*penetration
-			var normal := d / dist
-			var clamped := o2 + normal * min_d
-			var pen := min_d - dist
-			var tangent := Vector2(-normal.y, normal.x)
-			if tangent.dot(mv2) < 0.0:
-				tangent = -tangent  # 取与移动方向同侧的切线（绕行方向）
-			t2 = clamped + tangent * minf(pen, step_len)
+			var push := mv2.normalized() if mv2.length() > 0.001 else Vector2(1.0, 0.0)
+			t2 = o2 + push * min_d
+		else:
+			t2 = o2 + d / dist * min_d
 	return Vector3(t2.x - f2.x, move_vec.y, t2.y - f2.y)
 
 
