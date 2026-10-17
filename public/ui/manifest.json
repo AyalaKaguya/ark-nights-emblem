@@ -1,0 +1,966 @@
+{
+  "version": 1,
+  "source": "Original sprites from the locally installed Arknights PC client; source bundles read-only.",
+  "rights": "All original Arknights artwork belongs to Hypergryph and respective rights holders. Extracting it grants no new license. No Baldurs Gate 3 artwork is used.",
+  "adaptationBoundary": "RPG action names are this prototype mappings. move/dash/disengage/rally/interact/passive/end-turn/focus reuse documented original stat or UI symbols; the source game does not have those DnD action semantics. PNG pixels are original cropped sprites; no fabricated artwork.",
+  "assets": [
+    {
+      "path": "/ui/portraits/amiya.png",
+      "sourceBundle": "spritepack/ui_char_avatar_8.ab",
+      "sourceSprite": "char_002_amiya",
+      "sourcePathId": "-8711674305963516736",
+      "size": [
+        180,
+        180
+      ],
+      "sha256": "cf3529aa76413865f3adcca74daa07807412c4833509991cde46c700d67e626d",
+      "note": "Original Amiya default avatar.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/portraits/hoshiguma.png",
+      "sourceBundle": "spritepack/ui_char_avatar_8.ab",
+      "sourceSprite": "char_136_hsguma",
+      "sourcePathId": "-7625423182208273271",
+      "size": [
+        180,
+        180
+      ],
+      "sha256": "18174908a824ae29bd1afc01967426de865f2958c19eeea2fef842c59b020a0c",
+      "note": "Original Hoshiguma default avatar.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/portraits/ansel.png",
+      "sourceBundle": "spritepack/ui_char_avatar_9.ab",
+      "sourceSprite": "char_212_ansel",
+      "sourcePathId": "482793349982391817",
+      "size": [
+        180,
+        180
+      ],
+      "sha256": "d6af916de9ea2e12add77d521869e55b3cd82497c5649c9a5bb12b15978fed59",
+      "note": "Original Ansel default avatar.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/portraits/melee.png",
+      "sourceBundle": "spritepack/icon_enemies_0.ab",
+      "sourceSprite": "enemy_1002_nsabr",
+      "sourcePathId": "-894120772295678541",
+      "size": [
+        160,
+        160
+      ],
+      "sha256": "a8e6479acec6fe00a8cea2eb7dcaa12649c10ca93c146aa938efa43c7458b83d",
+      "note": "Original melee enemy icon, matching the prototype Spine model.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/portraits/ranged.png",
+      "sourceBundle": "spritepack/icon_enemies_0.ab",
+      "sourceSprite": "enemy_1003_ncbow",
+      "sourcePathId": "-5907897485947142616",
+      "size": [
+        160,
+        160
+      ],
+      "sha256": "8781398160c084264020a369bb6254d98f348191ad12daef470449269f239557",
+      "note": "Original ranged enemy icon, matching the prototype Spine model.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/skills/amiya.png",
+      "sourceBundle": "spritepack/skill_icons_0.ab",
+      "sourceSprite": "skill_icon_skchr_amiya_2",
+      "sourcePathId": "4866835058907736299",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "12e79192ecb311c7c173bfa25768233ebe69425752d8ef59d574e42612eba15d",
+      "note": "Original Amiya skill 2 icon; prototype skill rules are independently designed.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/skills/hoshiguma.png",
+      "sourceBundle": "spritepack/skill_icons_0.ab",
+      "sourceSprite": "skill_icon_skchr_hsguma_2",
+      "sourcePathId": "-2142191583621974123",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "0afc9ff1682994e8987aca77ad1acf40c61d944f571734afcda78ab7206745a6",
+      "note": "Original Hoshiguma skill 2 icon; prototype skill rules are independently designed.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/skills/ansel.png",
+      "sourceBundle": "spritepack/skill_icons_1.ab",
+      "sourceSprite": "skill_icon_skcom_heal_up[1]",
+      "sourcePathId": "6834250778751605794",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "c9ea95c3313b62d75749f71392c75e9716f0581419f28b07d02733a0d3629717",
+      "note": "Original common healing enhancement alpha icon, used as Ansel healing action representative.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/attack.png",
+      "sourceBundle": "spritepack/skill_icons_1.ab",
+      "sourceSprite": "skill_icon_skcom_atk_up[1]",
+      "sourcePathId": "-2611301669931718532",
+      "size": [
+        128,
+        128
+      ],
+      "sha256": "e95df65fa970c7bf9b4a4597e2b44eaa045682068e89240f921af06840fdc466",
+      "note": "Original 128px common ATK enhancement alpha skill icon, repurposed for RPG Attack.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/move.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_direction_arrow",
+      "sourcePathId": "-2405045024591083140",
+      "size": [
+        181,
+        239
+      ],
+      "sha256": "a19941b948a45c774ec9ad50e9e25564df9b3f9417dd498f9d54c95a5e320464",
+      "note": "Original direction arrow, repurposed for RPG Move; not an original Move action icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/disengage.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "btn_escape",
+      "sourcePathId": "-1711465948199037856",
+      "size": [
+        212,
+        214
+      ],
+      "sha256": "c722bb57bb36e0003dba6c6922a732e006454f5a87328bc938747e34ab34f571",
+      "note": "Original text-free battle retreat icon, repurposed for RPG Disengage.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/inventory.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_sandbox_dialog_bag",
+      "sourcePathId": "-4840450171349581855",
+      "size": [
+        76,
+        59
+      ],
+      "sha256": "4d252f64d8110b0a2bcf85b768f1fdbd893211c3ef17b183712f1e548f433d4d",
+      "note": "Original sandbox bag icon, repurposed for inventory.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/passive.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "icon_sparkle",
+      "sourcePathId": "5623029619140226275",
+      "size": [
+        15,
+        17
+      ],
+      "sha256": "c5448fe3e06a0402ed23fdc376925515f8482b94a8fc3c9b82689c555fe18e40",
+      "note": "Original sparkle icon, repurposed for passive traits.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/end-turn.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "btn_play",
+      "sourcePathId": "1452262410102113841",
+      "size": [
+        192,
+        159
+      ],
+      "sha256": "ed5b876f728aabce36c0a96ce97e58004ddb08d946046d3924763a59891ec9a8",
+      "note": "Original play button icon, repurposed for End Turn.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/focus.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "icon_state_normal_outside",
+      "sourcePathId": "4715120940838195868",
+      "size": [
+        35,
+        34
+      ],
+      "sha256": "a891a49a58150e0eb63a33c9b21d4786cfae28ae052ddf90164ac0c23233e487",
+      "note": "Original text-free focus reticle graphic, repurposed for camera/target focus.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/menu.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "btn_menu",
+      "sourcePathId": "-7515880303315427423",
+      "size": [
+        131,
+        129
+      ],
+      "sha256": "d7c2a99266d52500294985d4a3ab47f717f08dacd1f58ece98cbebfaba8bf096",
+      "note": "Original battle menu icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/speed.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "btn_speed_2x",
+      "sourcePathId": "4855242080285115599",
+      "size": [
+        177,
+        147
+      ],
+      "sha256": "bcaed4c584443d6fae51beb0da1ca0a225462445efd10c9e46e66a49abf85a06",
+      "note": "Original 2x battle speed icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/pause.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "btn_pause",
+      "sourcePathId": "-5691120417397348688",
+      "size": [
+        193,
+        159
+      ],
+      "sha256": "e62a92fb0bec28b1eb08d6283d977d73d8f937dd2d6a57ef73f68df719495ff8",
+      "note": "Original battle pause icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/professions/caster.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "icon_profession_caster",
+      "sourcePathId": "-5616669669562132024",
+      "size": [
+        44,
+        45
+      ],
+      "sha256": "39108075cc54e2e4caa4038647df3478d4099a4f8e0c2fd8865b2c1baf448b08",
+      "note": "Original Caster profession icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/professions/tank.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "icon_profession_tank",
+      "sourcePathId": "-7622744750679790997",
+      "size": [
+        44,
+        45
+      ],
+      "sha256": "1cf7a5a011c448b4752c9c17e80b7bce98430a954478d34feb7ab0fa4e27b534",
+      "note": "Original Defender profession icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/professions/medic.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "icon_profession_medic",
+      "sourcePathId": "459249076219216806",
+      "size": [
+        44,
+        45
+      ],
+      "sha256": "428afe4f27a1fbcfa3fc1707480576f88c65daf358b8a1a87440b9d37fdea209",
+      "note": "Original Medic profession icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/professions/melee.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "icon_profession_warrior",
+      "sourcePathId": "4099208360745159213",
+      "size": [
+        44,
+        45
+      ],
+      "sha256": "41f3519588ac5cdceaa514d593cfde24c4d6a3a9a9ace024775553ef81e50b5b",
+      "note": "Original Guard profession icon, representative of a melee enemy.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/professions/ranged.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "icon_profession_sniper",
+      "sourcePathId": "2489600034428004756",
+      "size": [
+        44,
+        45
+      ],
+      "sha256": "9a6f462cfeb318f307ef03f376214ba7fc6ced9ddddd57135a0242068d485979",
+      "note": "Original Sniper profession icon, representative of a ranged enemy.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/skill.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "skill_02_frame",
+      "sourcePathId": "-5338831607920227212",
+      "size": [
+        239,
+        258
+      ],
+      "sha256": "700f7161c8ddd0753985e74515caba0b1851677c0b38b2394944a28f6036b9f1",
+      "note": "Original skill frame.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/portrait.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_charactercard_underframe",
+      "sourcePathId": "-4581397962792428758",
+      "size": [
+        180,
+        197
+      ],
+      "sha256": "3aa0ab242597d054e0e6bc2dc45055f8e6e4096137548906868ed883351e8b5b",
+      "note": "Original operator card underframe.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/battle-menu.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_battlemenu_frame",
+      "sourcePathId": "356146579021566185",
+      "size": [
+        1280,
+        310
+      ],
+      "sha256": "f5acde5483a0fd091ab0a0d537853692941bf6917cf072140985659d1816e9cc",
+      "note": "Original battle menu frame.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/character-menu.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_character_menu_frame",
+      "sourcePathId": "6933798520532282872",
+      "size": [
+        943,
+        943
+      ],
+      "sha256": "170c891bb770d5692d0d839ee4168b6e4cedf4f7aa47c1e6ff01b1ecc73afdfa",
+      "note": "Original character menu frame.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/rectangle.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_rectangle_frame_full",
+      "sourcePathId": "3529116846243563044",
+      "size": [
+        24,
+        24
+      ],
+      "sha256": "7807a9cdba011f5b1fad2b6f0040d3f8a96ccf8539ba887d51bc78e801b676c7",
+      "note": "Original full rectangular frame.",
+      "spriteBorder": {
+        "x": 6.0,
+        "y": 6.0,
+        "z": 6.0,
+        "w": 6.0
+      }
+    },
+    {
+      "path": "/ui/frames/rectangle-triangle.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_rectangle_frame_triangle",
+      "sourcePathId": "6971833418420373028",
+      "size": [
+        18,
+        18
+      ],
+      "sha256": "495fc9451fa44204ae0f945e85c048037cac4f939d47db207edc9bbb8bcb4042",
+      "note": "Original triangular-corner frame.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 6.0,
+        "z": 6.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/circle.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_circle",
+      "sourcePathId": "-1484669390334438494",
+      "size": [
+        53,
+        53
+      ],
+      "sha256": "6732f5f74accb6e5019b70f459e2942a660800c7f1c6986f13c025640e36d1e6",
+      "note": "Original circle graphic.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/ring.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_respawn_ring",
+      "sourcePathId": "-3593133415605122557",
+      "size": [
+        100,
+        100
+      ],
+      "sha256": "9927765ed8b839e5b145e88e2fe4f1d898786c03ccf999bdf51c3d990593f8d7",
+      "note": "Original respawn ring.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/skill-panel.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_skill_panel",
+      "sourcePathId": "-1935070931142081201",
+      "size": [
+        1045,
+        26
+      ],
+      "sha256": "f30fc2b5b37d682b2399c0f3b4b7aa5133c9fc2c8fc5aefcaff643f20388f826",
+      "note": "Original skill panel background.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/info-panel.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "sprite_character_info_back",
+      "sourcePathId": "-3508246909633819879",
+      "size": [
+        735,
+        291
+      ],
+      "sha256": "b6c5e4b1b3509cd7952eb10b89699ca167b9809864f8927493ab8336cf0643cb",
+      "note": "Original character information panel.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/item.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "icon_item_bkg",
+      "sourcePathId": "5423535875284784404",
+      "size": [
+        183,
+        183
+      ],
+      "sha256": "8c2bec5f1221c4db547b2a81cf95c7b566924190dfd68d0ea93c61d120e0e828",
+      "note": "Original item background.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/talent.png",
+      "sourceBundle": "arts/ui/[uc]battlecommon.ab",
+      "sourceSprite": "talent_back",
+      "sourcePathId": "7264068444390147538",
+      "size": [
+        73,
+        21
+      ],
+      "sha256": "879f0d60a5a8f8220fcfe7bb5f0c06f9c7dbed251bb0b9ca3d4a69a42f3d037e",
+      "note": "Original talent background.",
+      "spriteBorder": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0,
+        "w": 10.0
+      }
+    },
+    {
+      "path": "/ui/icons/dash.png",
+      "sourceBundle": "arts/ui/[uc]common.ab",
+      "sourceSprite": "icon_attack_speed",
+      "sourcePathId": "3859289059425859797",
+      "size": [
+        23,
+        23
+      ],
+      "sha256": "790cacb53251312f0d811f278a16249b634e73739a456e9194737611cae183dd",
+      "note": "Original attack-speed stat icon, repurposed for RPG Dash.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/rally.png",
+      "sourceBundle": "arts/ui/[uc]common.ab",
+      "sourceSprite": "icon_hp",
+      "sourcePathId": "2427966383447382472",
+      "size": [
+        23,
+        23
+      ],
+      "sha256": "88076b8b7e29c9c0cb562fccb862187fbcb4e2e39f989b21f2aed581928f70df",
+      "note": "Original HP stat icon, repurposed for RPG Rally.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/interact.png",
+      "sourceBundle": "arts/ui/[uc]common.ab",
+      "sourceSprite": "confirm_icon",
+      "sourcePathId": "-1817753449817354980",
+      "size": [
+        75,
+        75
+      ],
+      "sha256": "54d5944a417b14d270bef9f79fce63ac308cd4510608d6cfe1b1c08b9f4fdd0f",
+      "note": "Original confirmation icon, repurposed for Interact.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/cancel.png",
+      "sourceBundle": "arts/ui/[uc]common.ab",
+      "sourceSprite": "btn_close",
+      "sourcePathId": "-1933677065662379901",
+      "size": [
+        57,
+        59
+      ],
+      "sha256": "bf604759bd253864b03191c63e11afed03c48c033caff1c90493a68c6353341c",
+      "note": "Original text-free close icon, used for Cancel.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/defense.png",
+      "sourceBundle": "arts/ui/[uc]common.ab",
+      "sourceSprite": "icon_def",
+      "sourcePathId": "5492487076362036574",
+      "size": [
+        23,
+        23
+      ],
+      "sha256": "fc5da1a95b6f16598095a59ee26674b3c9b5ed913a311b2e8c1f16d73f4d8d1f",
+      "note": "Original DEF stat icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/block.png",
+      "sourceBundle": "arts/ui/[uc]common.ab",
+      "sourceSprite": "icon_block",
+      "sourcePathId": "5628049807134747210",
+      "size": [
+        23,
+        23
+      ],
+      "sha256": "4bf65c9f360e02dd9d4a4d22299433ca31af4d05a9444f1e42c4de12c511260f",
+      "note": "Original Block stat icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/resistance.png",
+      "sourceBundle": "arts/ui/[uc]common.ab",
+      "sourceSprite": "icon_res",
+      "sourcePathId": "-7445095812275509407",
+      "size": [
+        23,
+        23
+      ],
+      "sha256": "4aa4998c59bf683370b0a36a0cf13decbc1e7bc39963a6c41f0aa8735c6a3638",
+      "note": "Original RES stat icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/icons/time.png",
+      "sourceBundle": "arts/ui/[uc]common.ab",
+      "sourceSprite": "icon_time",
+      "sourcePathId": "-1234130849787329659",
+      "size": [
+        23,
+        23
+      ],
+      "sha256": "49f7df28385a24d2f38cee4d933fe264ce0884809b42b387a084eb360e5cb999",
+      "note": "Original time icon.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/frames/round-panel.png",
+      "sourceBundle": "arts/ui/[uc]common.ab",
+      "sourceSprite": "back_round",
+      "sourcePathId": "-5794886417973567687",
+      "size": [
+        140,
+        89
+      ],
+      "sha256": "ff66a414776ad306de219f327d7880560b4025d1c98ee9a1010f0f8aa7972d06",
+      "note": "Original rounded panel background.",
+      "spriteBorder": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0,
+        "w": 10.0
+      }
+    },
+    {
+      "path": "/ui/items/rally.png",
+      "sourceBundle": "arts/ui_item_icons_1.ab",
+      "sourceSprite": "ap_supply_lt_60",
+      "sourcePathId": "-4805805235529930169",
+      "size": [
+        104,
+        175
+      ],
+      "sha256": "9f1ec7a16c01e9c47fe40fa92ec3c374e6e6c9d5f9ba59a45f16c015827e15c8",
+      "note": "Original limited AP supply item icon; only this slot is mapped to the existing Rally command, not its original AP effect.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/items/supply.png",
+      "sourceBundle": "arts/ui_item_icons_0.ab",
+      "sourceSprite": "ap_supply_lt_120",
+      "sourcePathId": "6113684889276268291",
+      "size": [
+        175,
+        176
+      ],
+      "sha256": "7fc225ad53aab3a2b6dde862d23fee8ef3cdfa59f4ef7eef3f4e0fa5afdb1805",
+      "note": "Original limited AP supply item icon; inventory display only, no new gameplay effect.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/items/food.png",
+      "sourceBundle": "arts/ui_item_icons_0.ab",
+      "sourceSprite": "ap_supply_lt_100_2025_5",
+      "sourcePathId": "-5661738401831401133",
+      "size": [
+        168,
+        127
+      ],
+      "sha256": "7614937986f132e70a7782f28e59612c768f84ab8b740ff7b0331be04267c8e6",
+      "note": "Original 2025 event AP supply sandwich icon; inventory display only, no new gameplay effect.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/items/currency.png",
+      "sourceBundle": "arts/ui_item_icons_4.ab",
+      "sourceSprite": "GOLD",
+      "sourcePathId": "-5791439794495747533",
+      "size": [
+        180,
+        139
+      ],
+      "sha256": "a4199e3a66b14deb57d19d1b8f6e06187ef671d14e1d488d91a79f8e41ae2701",
+      "note": "Original LMD currency icon; inventory display only, no new gameplay effect.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/items/material.png",
+      "sourceBundle": "arts/ui_item_icons_5.ab",
+      "sourceSprite": "MTL_GOLD1",
+      "sourcePathId": "-2659585309131673023",
+      "size": [
+        121,
+        110
+      ],
+      "sha256": "b89fa63d26fd7900fe6fdf7cd4001debf5c7592115f5959d490eea552770d70d",
+      "note": "Original material icon; inventory display only, no new gameplay effect.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    },
+    {
+      "path": "/ui/items/manual.png",
+      "sourceBundle": "arts/ui_item_icons_5.ab",
+      "sourceSprite": "MTL_SKILL3",
+      "sourcePathId": "-8075800497097854227",
+      "size": [
+        170,
+        180
+      ],
+      "sha256": "57b35ff1c1e0f12c567832b9c2cccc6d7236dcec23c0f52a0360ded94769ca3e",
+      "note": "Original skill summary material icon; inventory display only, no new gameplay effect.",
+      "spriteBorder": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+      }
+    }
+  ],
+  "sources": [
+    {
+      "relativePath": "spritepack/ui_char_avatar_8.ab",
+      "bytes": 3259412,
+      "sha256": "38062c2daa7e9b774957950cb5265fdcb95cc3f87892453dca91a9544b49b503"
+    },
+    {
+      "relativePath": "spritepack/ui_char_avatar_9.ab",
+      "bytes": 3288550,
+      "sha256": "24ca8dcb30057ce8e4c4c523adeeba4ea2ad0e7761ebefe9cefbc30d06c65e08"
+    },
+    {
+      "relativePath": "spritepack/icon_enemies_0.ab",
+      "bytes": 5912592,
+      "sha256": "a1c51297359efbb9c701113a7d91b6e44ccd1fdccfef8490084b915d63acf7a0"
+    },
+    {
+      "relativePath": "spritepack/skill_icons_0.ab",
+      "bytes": 5456657,
+      "sha256": "35db8bb94a5e15acfd61036d4b8f154cb57c60af7bc07d342e67abfb485494ac"
+    },
+    {
+      "relativePath": "spritepack/skill_icons_1.ab",
+      "bytes": 5197513,
+      "sha256": "0836e10c1c12e8896313086074aa34dd5f3e14c93200f93bdc8b35a341cfd7bb"
+    },
+    {
+      "relativePath": "arts/ui/[uc]battlecommon.ab",
+      "bytes": 7799350,
+      "sha256": "c5259b6c5b63c52763c263545703652dbe69c36c9e8cd2e5736c8885dc281375"
+    },
+    {
+      "relativePath": "arts/ui/[uc]common.ab",
+      "bytes": 1045568,
+      "sha256": "c008657612ddbac919d5c19c530c940c173af2c79dc26d996c6095af7889d119"
+    },
+    {
+      "relativePath": "arts/ui_item_icons_1.ab",
+      "bytes": 4012744,
+      "sha256": "849ec9436852e7ac9cfaec4a87ad5a19f696fc73e56f79f676c48909e5f66b08"
+    },
+    {
+      "relativePath": "arts/ui_item_icons_0.ab",
+      "bytes": 3380954,
+      "sha256": "47af545a7981099712dde5471dc49b67e88314fb809b20b27b39fa3f520c8f81"
+    },
+    {
+      "relativePath": "arts/ui_item_icons_4.ab",
+      "bytes": 3532802,
+      "sha256": "3988a3f214a61b93ee1b0de09ed7ea8844863a58c6a642124311f40f77e48c21"
+    },
+    {
+      "relativePath": "arts/ui_item_icons_5.ab",
+      "bytes": 3058413,
+      "sha256": "0f68576f6b6362df190cdf1b9f5510a474b9bbd792ba30e5665c275a72306d40"
+    }
+  ],
+  "missing": []
+}

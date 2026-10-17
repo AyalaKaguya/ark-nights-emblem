@@ -1,0 +1,82 @@
+{
+  "evidence": "Points are original Navmesh floor face centres; interaction meanings and encounter are prototype gameplay, region awaits visual verification.",
+  "bounds": {
+    "min": [
+      -2.5,
+      -1.52,
+      -3.5
+    ],
+    "max": [
+      47.5,
+      2.38,
+      28.5
+    ]
+  },
+  "cameraFocus": {
+    "x": 22,
+    "y": 0,
+    "z": 15
+  },
+  "partySpawns": [
+    {
+      "x": 21.1667,
+      "y": -0.01,
+      "z": 23.1673
+    },
+    {
+      "x": 19.1667,
+      "y": -0.01,
+      "z": 23.8346
+    },
+    {
+      "x": 23.1667,
+      "y": -0.01,
+      "z": 23.1673
+    }
+  ],
+  "encounterEnemies": [
+    {
+      "x": 26.1667,
+      "y": -0.01,
+      "z": 16.8333
+    },
+    {
+      "x": 29.1667,
+      "y": -0.01,
+      "z": 15.5
+    },
+    {
+      "x": 29.1667,
+      "y": -0.01,
+      "z": 11.1667
+    },
+    {
+      "x": 29.8333,
+      "y": -0.01,
+      "z": 10.8333
+    }
+  ],
+  "interactions": {
+    "reception": {
+      "x": 26.1667,
+      "y": -0.01,
+      "z": 18.1667
+    },
+    "door": {
+      "x": 24.8333,
+      "y": -0.01,
+      "z": 16.8333
+    },
+    "supply": {
+      "x": 29.1667,
+      "y": -0.01,
+      "z": 19.8317
+    }
+  },
+  "trigger": {
+    "x": 27,
+    "z": 16,
+    "width": 8,
+    "depth": 4
+  }
+}

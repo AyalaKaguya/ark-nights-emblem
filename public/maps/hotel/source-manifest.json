@@ -1,0 +1,61 @@
+{
+  "source": "Local installed Arknights PC game assets only; read-only extraction",
+  "sources": [
+    {
+      "relativePath": "scenes/arkvent/ark_odc_act53side_main/ark_odc_act53side_main.ab",
+      "bytes": 19778258,
+      "sha256": "9901d386612892023556a8042ef80c65714afc66407bc3e71d7cd3443fe81e56"
+    },
+    {
+      "relativePath": "scenes/arkvent/ark_odc_act53side_main/scene_data.ab",
+      "bytes": 85536,
+      "sha256": "34d76d445a1a179235c2409b921b1ead3f896cf0e745018631eee7adb355b479"
+    },
+    {
+      "relativePath": "scenes/arkvent/ark_odc_act53side_main/ark_odc_act53side_main/lightingdata.ab",
+      "bytes": 14148166,
+      "sha256": "badcbb27b04320f35edf640d1314589fff8ca781051562bb425df0be6698b4d8"
+    },
+    {
+      "relativePath": "arts/maps/map_arkodc/res.ab",
+      "bytes": 26681742,
+      "sha256": "cce5869534e4840e82fc0cedf68bc922506cf244a98859371d9502a5e43bf209"
+    },
+    {
+      "relativePath": "arts/maps/map_arkodc/backgroundmesh/background2.ab",
+      "bytes": 9625,
+      "sha256": "8f28f8adbe1b55bc431664ae70abcf68b0315426a6ba03ab13068d68ad478ac2"
+    },
+    {
+      "relativePath": "arts/maps/map_arkodc/mesh/waterwheel.ab",
+      "bytes": 75168,
+      "sha256": "7fc42b62f391dfb4e258616bc8e78f311db25179a1152d0868fc22fd08cc767f"
+    },
+    {
+      "relativePath": "arts/maps/map_arkodc/mesh/windmilla.ab",
+      "bytes": 43018,
+      "sha256": "9d081613e5a23479890c4214da8466f469f14f8af1a38e9872b169c8696d8ad1"
+    },
+    {
+      "relativePath": "arts/maps/map_arkodc/mesh/windmillb.ab",
+      "bytes": 41268,
+      "sha256": "1b776acdfa6593bb9b9fac3b5d78734d8309cbeee0a830e7133f5cf2d4ae5e22"
+    },
+    {
+      "relativePath": "arts/maps/map_arkodc/mesh/windmillc.ab",
+      "bytes": 30275,
+      "sha256": "6c31d872fe90e843a637ae66a8973626c3a8b6b74c32e0372d045536df2cc4bf"
+    },
+    {
+      "relativePath": "arts/maps/common/trap/trap_arkvent.ab",
+      "bytes": 13859284,
+      "sha256": "125e33061185392a8cd4afa6c4f767c5f5c80180384212618b794117322babca"
+    },
+    {
+      "relativePath": "../../Resources/unity default resources",
+      "bytes": 4832808,
+      "sha256": "c162b36ea191fb5990ec98906e9c3097c2a2bfed250bf71ad3650e65df291eb0"
+    }
+  ],
+  "sourceAssetsUnmodified": true
+}

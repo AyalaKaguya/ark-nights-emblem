@@ -1,0 +1,192 @@
+{
+  "totalBytes": 1559015,
+  "sources": [
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models/002_amiya/build_char_002_amiya.atlas",
+      "localPath": "public/actors/amiya/build_char_002_amiya.atlas",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models/002_amiya/build_char_002_amiya.atlas",
+      "bytes": 4554,
+      "sha256": "696114f96f2a2366fc4a373bd1d08c7569f9eb279305347364ffd629eab9d9b5",
+      "retrievedAt": "2026-10-14T05:23:54.402Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models/002_amiya/build_char_002_amiya.png",
+      "localPath": "public/actors/amiya/build_char_002_amiya.png",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models/002_amiya/build_char_002_amiya.png",
+      "bytes": 183676,
+      "sha256": "618d7ce9cc18e4ef46cb5f513ffebc0b6b7b7e08f8e0f12a7abb3ff93547d7e4",
+      "retrievedAt": "2026-10-14T05:24:33.977Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models/002_amiya/build_char_002_amiya.skel",
+      "localPath": "public/actors/amiya/build_char_002_amiya.skel",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models/002_amiya/build_char_002_amiya.skel",
+      "bytes": 82146,
+      "sha256": "41908ed5c73ed9c5b5616a7c45d61275c29319fbb6a46068df5a4d0c6f5c7bff",
+      "retrievedAt": "2026-10-14T05:24:34.872Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models/136_hsguma/build_char_136_hsguma.atlas",
+      "localPath": "public/actors/hoshiguma/build_char_136_hsguma.atlas",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models/136_hsguma/build_char_136_hsguma.atlas",
+      "bytes": 4696,
+      "sha256": "28b7e919c307c7ec83b709717c33c9a1118e2f426acc549ce678ae2759728159",
+      "retrievedAt": "2026-10-14T05:24:35.278Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models/136_hsguma/build_char_136_hsguma.png",
+      "localPath": "public/actors/hoshiguma/build_char_136_hsguma.png",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models/136_hsguma/build_char_136_hsguma.png",
+      "bytes": 225779,
+      "sha256": "f0575bba9ddd56e729736c59c36ede9fed69f616f45d2947058925fad4cd627f",
+      "retrievedAt": "2026-10-14T05:24:36.078Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models/136_hsguma/build_char_136_hsguma.skel",
+      "localPath": "public/actors/hoshiguma/build_char_136_hsguma.skel",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models/136_hsguma/build_char_136_hsguma.skel",
+      "bytes": 95441,
+      "sha256": "896ccf75b0268770888dc68ee156a9aefb4434a996b6a403c1d8004b2e9b7dfa",
+      "retrievedAt": "2026-10-14T05:24:36.780Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models/212_ansel/build_char_212_ansel.atlas",
+      "localPath": "public/actors/ansel/build_char_212_ansel.atlas",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models/212_ansel/build_char_212_ansel.atlas",
+      "bytes": 6665,
+      "sha256": "023cae85a6a372088c402fbbf4fabe84dde8910934f054ad20dd7fb3278d949b",
+      "retrievedAt": "2026-10-14T05:24:37.189Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models/212_ansel/build_char_212_ansel.png",
+      "localPath": "public/actors/ansel/build_char_212_ansel.png",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models/212_ansel/build_char_212_ansel.png",
+      "bytes": 232004,
+      "sha256": "7adc2f7b4f72d277e88cce99376ba7ea6900c9cfa51ed114467b61c5865548e6",
+      "retrievedAt": "2026-10-14T05:25:05.028Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models/212_ansel/build_char_212_ansel.skel",
+      "localPath": "public/actors/ansel/build_char_212_ansel.skel",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models/212_ansel/build_char_212_ansel.skel",
+      "bytes": 97664,
+      "sha256": "a1e5a551ac9190a86a9650a4e6915b5802054a1c7fbca3e012758046dfd67bb8",
+      "retrievedAt": "2026-10-14T05:25:05.463Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models_enemies/1002_nsabr/enemy_1002_nsabr.atlas",
+      "localPath": "public/actors/melee/enemy_1002_nsabr.atlas",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models_enemies/1002_nsabr/enemy_1002_nsabr.atlas",
+      "bytes": 2430,
+      "sha256": "7363864a276e23f1a3c19be706f2653b1fcd5fbe42e9f256cc211d3eba0cc752",
+      "retrievedAt": "2026-10-14T05:25:05.840Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models_enemies/1002_nsabr/enemy_1002_nsabr.png",
+      "localPath": "public/actors/melee/enemy_1002_nsabr.png",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models_enemies/1002_nsabr/enemy_1002_nsabr.png",
+      "bytes": 33306,
+      "sha256": "d38521c29dd6576ea18ca2b4b2862eaa599aab5cc52e2ae0f7d973add6218e97",
+      "retrievedAt": "2026-10-14T05:25:06.245Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models_enemies/1002_nsabr/enemy_1002_nsabr.skel",
+      "localPath": "public/actors/melee/enemy_1002_nsabr.skel",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models_enemies/1002_nsabr/enemy_1002_nsabr.skel",
+      "bytes": 80338,
+      "sha256": "d8b94151ac583a282b85ebd177453b25c61560a24ba6679fde3bf4c38b5d4bd4",
+      "retrievedAt": "2026-10-14T05:25:06.619Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models_enemies/1003_ncbow/enemy_1003_ncbow.atlas",
+      "localPath": "public/actors/ranged/enemy_1003_ncbow.atlas",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models_enemies/1003_ncbow/enemy_1003_ncbow.atlas",
+      "bytes": 2630,
+      "sha256": "34121f13c31101944befd717cdb8704ff12985031a225a4338b399cb1ffa6b37",
+      "retrievedAt": "2026-10-14T05:28:45.056Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models_enemies/1003_ncbow/enemy_1003_ncbow.png",
+      "localPath": "public/actors/ranged/enemy_1003_ncbow.png",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models_enemies/1003_ncbow/enemy_1003_ncbow.png",
+      "bytes": 45781,
+      "sha256": "f764eafff85cc7ccaeb1627bbe8dad48ca4a6913cbbe1c797f534d3c5da1d5f5",
+      "retrievedAt": "2026-10-14T05:39:29.727Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "isHarryh/Ark-Models",
+      "commit": "8a3857c250a5c271429aefa82c660ff35803166e",
+      "remotePath": "models_enemies/1003_ncbow/enemy_1003_ncbow.skel",
+      "localPath": "public/actors/ranged/enemy_1003_ncbow.skel",
+      "url": "https://raw.githubusercontent.com/isHarryh/Ark-Models/8a3857c250a5c271429aefa82c660ff35803166e/models_enemies/1003_ncbow/enemy_1003_ncbow.skel",
+      "bytes": 38300,
+      "sha256": "2511a928f53fc61cff4023b23e4b012a78b9c144ae05d958a7c023974d5c687d",
+      "retrievedAt": "2026-10-14T05:30:34.359Z",
+      "version": "Spine 3.8.99"
+    },
+    {
+      "repository": "EsotericSoftware/spine-runtimes",
+      "commit": "8b4844bd4b193ba9e54487ed397a777993cbad56",
+      "remotePath": "spine-ts/build/spine-webgl.js",
+      "localPath": "public/vendor/spine-webgl-3.8.js",
+      "url": "https://raw.githubusercontent.com/EsotericSoftware/spine-runtimes/8b4844bd4b193ba9e54487ed397a777993cbad56/spine-ts/build/spine-webgl.js",
+      "bytes": 422151,
+      "sha256": "4b108bad314c152bf0ff7a7f56fce5c98073f05a2bfa53e880d6c24b6f7c3aa5",
+      "retrievedAt": "2026-10-14T05:37:03.332Z",
+      "version": "3.8 branch"
+    },
+    {
+      "repository": "EsotericSoftware/spine-runtimes",
+      "commit": "8b4844bd4b193ba9e54487ed397a777993cbad56",
+      "remotePath": "spine-ts/LICENSE",
+      "localPath": "public/vendor/SPINE_RUNTIME_LICENSE.txt",
+      "url": "https://raw.githubusercontent.com/EsotericSoftware/spine-runtimes/8b4844bd4b193ba9e54487ed397a777993cbad56/spine-ts/LICENSE",
+      "bytes": 1454,
+      "sha256": "6142ee6cc2c03d3a918793e4750ae772bd3755c534d4a35e559e301acf51ec39",
+      "retrievedAt": "2026-10-14T05:39:31.389Z",
+      "version": "3.8 branch"
+    }
+  ]
+}

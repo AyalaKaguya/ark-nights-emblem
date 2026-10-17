@@ -1,0 +1,2165 @@
+{
+  "sourceScene": "ark_odc_act53side_main",
+  "coordinateSystem": "Unity left-handed, Y-up metres; matrix column-major",
+  "waters": [
+    {
+      "id": "136",
+      "name": "S_outworld_water_2",
+      "bounds": {
+        "min": [
+          -18.339564,
+          -5.295049,
+          18.354316
+        ],
+        "max": [
+          36.693023,
+          -3.58894,
+          43.66287
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:1553000202816249031"
+      ]
+    },
+    {
+      "id": "162",
+      "name": "S_outworld_water_20",
+      "bounds": {
+        "min": [
+          23.447961,
+          -3.24641,
+          27.899531
+        ],
+        "max": [
+          29.418917,
+          -3.24641,
+          31.895461
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "190",
+      "name": "S_outworld_water_26",
+      "bounds": {
+        "min": [
+          -9.209785,
+          -0.361495,
+          11.374817
+        ],
+        "max": [
+          -4.760048,
+          -0.361495,
+          16.271913
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:1553000202816249031"
+      ]
+    },
+    {
+      "id": "475",
+      "name": "S_outworld_water_21",
+      "bounds": {
+        "min": [
+          26.752544,
+          -5.064114,
+          38.29164
+        ],
+        "max": [
+          37.873821,
+          -5.064114,
+          45.962411
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "597",
+      "name": "S_outworld_water_19",
+      "bounds": {
+        "min": [
+          25.584425,
+          -2.683851,
+          31.52753
+        ],
+        "max": [
+          30.20005,
+          -2.683851,
+          34.616433
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "613",
+      "name": "S_outworld_water_17",
+      "bounds": {
+        "min": [
+          22.313319,
+          -1.343715,
+          32.010159
+        ],
+        "max": [
+          27.070948,
+          -1.261987,
+          36.045141
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "730",
+      "name": "S_outworld_water_22",
+      "bounds": {
+        "min": [
+          29.373351,
+          -4.270639,
+          33.849102
+        ],
+        "max": [
+          40.494628,
+          -4.270639,
+          41.519868
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "805",
+      "name": "S_outworld_water_24",
+      "bounds": {
+        "min": [
+          34.937713,
+          -5.155175,
+          22.803535
+        ],
+        "max": [
+          46.063233,
+          -5.155175,
+          36.560612
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "846",
+      "name": "S_outworld_water_10",
+      "bounds": {
+        "min": [
+          3.438781,
+          -3.046039,
+          27.116206
+        ],
+        "max": [
+          10.761433,
+          -3.046039,
+          32.054922
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "873",
+      "name": "S_outworld_water_8",
+      "bounds": {
+        "min": [
+          6.985742,
+          -3.285958,
+          35.050986
+        ],
+        "max": [
+          12.525197,
+          -3.285958,
+          38.457038
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "1047",
+      "name": "S_outworld_water_12",
+      "bounds": {
+        "min": [
+          -3.725513,
+          -1.14596,
+          16.537525
+        ],
+        "max": [
+          25.732275,
+          1.277651,
+          41.224397
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "1290",
+      "name": "S_outworld_water_13",
+      "bounds": {
+        "min": [
+          0.859578,
+          -0.312699,
+          17.861742
+        ],
+        "max": [
+          8.276994,
+          -0.312699,
+          22.800454
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "1301",
+      "name": "S_outworld_water_25",
+      "bounds": {
+        "min": [
+          37.86831,
+          -4.248099,
+          17.155381
+        ],
+        "max": [
+          48.913505,
+          -4.248099,
+          24.943636
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "1397",
+      "name": "S_outworld_water_7",
+      "bounds": {
+        "min": [
+          4.860214,
+          -0.695714,
+          30.163069
+        ],
+        "max": [
+          10.271892,
+          -0.611529,
+          33.645952
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "1443",
+      "name": "S_outworld_water_18",
+      "bounds": {
+        "min": [
+          22.35133,
+          -2.782009,
+          34.835419
+        ],
+        "max": [
+          31.581418,
+          -2.782009,
+          40.50411
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "1470",
+      "name": "S_outworld_water_1",
+      "bounds": {
+        "min": [
+          -21.802465,
+          -1.965975,
+          -9.885704
+        ],
+        "max": [
+          60.660585,
+          -1.465975,
+          18.698645
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:1553000202816249031"
+      ]
+    },
+    {
+      "id": "1614",
+      "name": "S_outworld_water_15",
+      "bounds": {
+        "min": [
+          16.240744,
+          -1.5,
+          34.862689
+        ],
+        "max": [
+          27.273876,
+          -1.5,
+          42.124686
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "2092",
+      "name": "S_outworld_water_9",
+      "bounds": {
+        "min": [
+          7.097795,
+          -2.522665,
+          31.481928
+        ],
+        "max": [
+          14.364082,
+          -2.522665,
+          36.117787
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "2444",
+      "name": "S_outworld_water_23",
+      "bounds": {
+        "min": [
+          25.911576,
+          -4.0,
+          28.107054
+        ],
+        "max": [
+          36.956773,
+          -4.0,
+          35.499315
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    },
+    {
+      "id": "2510",
+      "name": "S_outworld_water_11",
+      "bounds": {
+        "min": [
+          -5.415378,
+          -0.990067,
+          16.781098
+        ],
+        "max": [
+          0.640361,
+          -0.861862,
+          23.590704
+        ]
+      },
+      "materialIds": [
+        "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320"
+      ]
+    }
+  ],
+  "smokeEmitters": [
+    {
+      "name": "mapeff_Arkodc_smoke8",
+      "position": [
+        21.20999908,
+        -0.54000002,
+        31.06999969
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        21.20999908,
+        -0.54000002,
+        31.06999969,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke2",
+      "position": [
+        15.07999992,
+        -1.42999995,
+        -5.11000013
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        15.07999992,
+        -1.42999995,
+        -5.11000013,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke4",
+      "position": [
+        0.88999999,
+        1.36000001,
+        35.59000015
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.88999999,
+        1.36000001,
+        35.59000015,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke5",
+      "position": [
+        -5.98999977,
+        -3.41000009,
+        32.31999969
+      ],
+      "matrix": [
+        0.70710802,
+        0.0,
+        0.70710553,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.70710553,
+        0.0,
+        0.70710802,
+        0.0,
+        -5.98999977,
+        -3.41000009,
+        32.31999969,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke3",
+      "position": [
+        1.19000006,
+        1.25800002,
+        21.0
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.19000006,
+        1.25800002,
+        21.0,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke6",
+      "position": [
+        7.59000015,
+        -2.19000006,
+        28.46999931
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        7.59000015,
+        -2.19000006,
+        28.46999931,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke12",
+      "position": [
+        33.61999893,
+        -3.32999992,
+        32.20000076
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        33.61999893,
+        -3.32999992,
+        32.20000076,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke9",
+      "position": [
+        12.60999966,
+        -2.04999995,
+        34.36999893
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        12.60999966,
+        -2.04999995,
+        34.36999893,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke10",
+      "position": [
+        33.34999847,
+        -3.1400001,
+        31.65999985
+      ],
+      "matrix": [
+        0.86602602,
+        0.0,
+        0.49999893,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        -0.49999893,
+        0.0,
+        0.86602602,
+        0.0,
+        33.34999847,
+        -3.1400001,
+        31.65999985,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke11",
+      "position": [
+        42.81999969,
+        -4.73000002,
+        28.61000061
+      ],
+      "matrix": [
+        0.96592595,
+        0.0,
+        -0.25881856,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.25881856,
+        0.0,
+        0.96592595,
+        0.0,
+        42.81999969,
+        -4.73000002,
+        28.61000061,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke13",
+      "position": [
+        13.23999977,
+        -3.9000001,
+        39.54000092
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        13.23999977,
+        -3.9000001,
+        39.54000092,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke1",
+      "position": [
+        9.71000004,
+        -1.48000002,
+        -6.0
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        9.71000004,
+        -1.48000002,
+        -6.0,
+        1.0
+      ]
+    },
+    {
+      "name": "mapeff_Arkodc_smoke7",
+      "position": [
+        21.10000038,
+        -0.58999997,
+        39.47000122
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        21.10000038,
+        -0.58999997,
+        39.47000122,
+        1.0
+      ]
+    }
+  ],
+  "waterMaterials": [
+    {
+      "id": "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:1553000202816249031",
+      "name": "MT_Arkodc_poolwater",
+      "shader": "unresolved",
+      "textures": {
+        "_DetailNormal": "/maps/hotel/textures/T_Arkodc_water_normal2_3822934257817965639.png",
+        "_NormalMap": "/maps/hotel/textures/T_Arkodc_water_normal1_-5557184390993066439.png"
+      },
+      "textureEnvs": {
+        "_Caustics_Tex": {
+          "path": null,
+          "scale": [
+            6.0,
+            6.0
+          ],
+          "offset": [
+            0.0,
+            0.0
+          ]
+        },
+        "_DetailNormal": {
+          "path": "/maps/hotel/textures/T_Arkodc_water_normal2_3822934257817965639.png",
+          "scale": [
+            1.0,
+            1.0
+          ],
+          "offset": [
+            0.0,
+            0.0
+          ]
+        },
+        "_NormalMap": {
+          "path": "/maps/hotel/textures/T_Arkodc_water_normal1_-5557184390993066439.png",
+          "scale": [
+            2.0,
+            2.0
+          ],
+          "offset": [
+            0.0,
+            0.0
+          ]
+        },
+        "_Ripple_Foam": {
+          "path": null,
+          "scale": [
+            1.0,
+            1.0
+          ],
+          "offset": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "floats": {
+        "_Alpha": 0.6800000071525574,
+        "_BumpScale": 1.0,
+        "_CAUSTICS": 1.0,
+        "_Caustics": 1.0,
+        "_Caustics_Brightness": 2.4600000381469727,
+        "_Caustics_DepthThres": -0.11500000208616257,
+        "_Caustics_Dispersion": 0.00686000008136034,
+        "_Caustics_EnableDispersion": 0.0,
+        "_Caustics_FlowSpeed": 0.5699999928474426,
+        "_Caustics_Parallax": 0.0,
+        "_Caustics_Speed": 1.5700000524520874,
+        "_Cutoff": 0.5,
+        "_DetailNormalMapScale": 1.0,
+        "_Distortion": 1.0,
+        "_DistortionIntensity": 0.800000011920929,
+        "_Dither": 1.0,
+        "_DitherIntensity": 0.0,
+        "_DstBlend": 0.0,
+        "_EdgeRange": 0.0,
+        "_EdgeSmoothness": 0.14000000059604645,
+        "_FOAM": 1.0,
+        "_FlowControl": 0.0,
+        "_FlowSpeed": 0.30000001192092896,
+        "_Foam": 1.0,
+        "_FoamIntensity": 9.0,
+        "_FoamRange": 0.9599999785423279,
+        "_Fresnel": 0.6499999761581421,
+        "_GlossMapScale": 1.0,
+        "_Glossiness": 0.5,
+        "_GlossyReflections": 1.0,
+        "_InvertFlow": 1.0,
+        "_Metallic": 0.0,
+        "_Mode": 0.0,
+        "_NormalScale": 0.30000001192092896,
+        "_OcclusionStrength": 1.0,
+        "_Parallax": 0.019999999552965164,
+        "_RIPPLE": 0.0,
+        "_Reflect": 1.0,
+        "_ReflectDistortion": 1.0,
+        "_ReflectIntensity": 1.0,
+        "_Ripple_Intensity": 0.20000000298023224,
+        "_Ripple_Speed": 1.0,
+        "_Ripple_Strength": 1.0,
+        "_SampleAxis": 1.0,
+        "_SampleCoord": 0.0,
+        "_SmoothnessTextureChannel": 0.0,
+        "_SpecIntensity": 0.8999999761581421,
+        "_SpecRange": 0.11999999731779099,
+        "_SpecSmoothness": 0.8500000238418579,
+        "_SpecThreshold": 1.0,
+        "_SpecularHighlights": 1.0,
+        "_SrcBlend": 1.0,
+        "_Test": 0.0989999994635582,
+        "_UVSec": 0.0,
+        "_WaterDistortionIntensity": 0.06199999898672104,
+        "_ZWrite": 1.0
+      },
+      "colors": {
+        "_BloomFilter": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_BloomThreshold": {
+          "r": 0.5,
+          "g": 0.5,
+          "b": 0.5,
+          "a": 1.0
+        },
+        "_Caustics_Dir": {
+          "r": 1.0,
+          "g": 0.0,
+          "b": -1.0,
+          "a": 1.0
+        },
+        "_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_DeepWaterColor": {
+          "r": 0.0,
+          "g": 0.3011621832847595,
+          "b": 0.4274509847164154,
+          "a": 1.0
+        },
+        "_EmissionColor": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "_FlowDirection": {
+          "r": -1.0,
+          "g": 0.0,
+          "b": 0.33000001311302185,
+          "a": 0.30000001192092896
+        },
+        "_FoamCol": {
+          "r": 0.5641509294509888,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_FoamTilling": {
+          "r": 6.0,
+          "g": 3.0,
+          "b": 3.0,
+          "a": 3.5
+        },
+        "_NormalTilling": {
+          "r": 2.0,
+          "g": 3.0,
+          "b": 1.0,
+          "a": 2.0
+        },
+        "_NormalUV1": {
+          "r": 2.0,
+          "g": 4.0,
+          "b": -1.0,
+          "a": 0.20000000298023224
+        },
+        "_NormalUV2": {
+          "r": 1.0,
+          "g": 2.0,
+          "b": -0.6000000238418579,
+          "a": -0.20000000298023224
+        },
+        "_Ripple_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_ShallowWaterColor": {
+          "r": 0.15574932098388672,
+          "g": 0.6196078658103943,
+          "b": 0.4380314350128174,
+          "a": 1.0
+        },
+        "_SunDir": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 1.0,
+          "a": 0.0
+        },
+        "_SunDirection": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 1.0,
+          "a": 0.0
+        },
+        "_UVOffset": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_WaterColor": {
+          "r": 0.16724097728729248,
+          "g": 0.3132075071334839,
+          "b": 0.30175912380218506,
+          "a": 1.0
+        },
+        "_WaterDistortion": {
+          "r": -0.20000000298023224,
+          "g": -0.30000001192092896,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_WaterMovement": {
+          "r": 0.20000000298023224,
+          "g": 0.10000000149011612,
+          "b": 0.20000000298023224,
+          "a": 0.0
+        }
+      },
+      "renderQueue": 2999
+    },
+    {
+      "id": "CAB-efb4d71e08d5dc8d6ff785d1a12d650a:6042092439613130320",
+      "name": "MT_Arkodc_poolwater2",
+      "shader": "unresolved",
+      "textures": {
+        "_DetailNormal": "/maps/hotel/textures/T_Arkodc_water_normal2_3822934257817965639.png",
+        "_NormalMap": "/maps/hotel/textures/T_Arkodc_water_normal1_-5557184390993066439.png"
+      },
+      "textureEnvs": {
+        "_Caustics_Tex": {
+          "path": null,
+          "scale": [
+            6.0,
+            6.0
+          ],
+          "offset": [
+            0.0,
+            0.0
+          ]
+        },
+        "_DetailNormal": {
+          "path": "/maps/hotel/textures/T_Arkodc_water_normal2_3822934257817965639.png",
+          "scale": [
+            1.0,
+            1.0
+          ],
+          "offset": [
+            0.0,
+            0.0
+          ]
+        },
+        "_NormalMap": {
+          "path": "/maps/hotel/textures/T_Arkodc_water_normal1_-5557184390993066439.png",
+          "scale": [
+            2.0,
+            2.0
+          ],
+          "offset": [
+            0.0,
+            0.0
+          ]
+        },
+        "_Ripple_Foam": {
+          "path": null,
+          "scale": [
+            1.0,
+            1.0
+          ],
+          "offset": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "floats": {
+        "_Alpha": 0.6800000071525574,
+        "_BumpScale": 1.0,
+        "_CAUSTICS": 1.0,
+        "_Caustics": 1.0,
+        "_Caustics_Brightness": 2.4600000381469727,
+        "_Caustics_DepthThres": -0.11500000208616257,
+        "_Caustics_Dispersion": 0.00686000008136034,
+        "_Caustics_EnableDispersion": 0.0,
+        "_Caustics_FlowSpeed": 0.5699999928474426,
+        "_Caustics_Parallax": 0.0,
+        "_Caustics_Speed": 1.5700000524520874,
+        "_Cutoff": 0.5,
+        "_DetailNormalMapScale": 1.0,
+        "_Distortion": 1.0,
+        "_DistortionIntensity": 0.800000011920929,
+        "_Dither": 1.0,
+        "_DitherIntensity": 0.0,
+        "_DstBlend": 0.0,
+        "_EdgeRange": 0.0,
+        "_EdgeSmoothness": 0.14000000059604645,
+        "_FOAM": 1.0,
+        "_FlowControl": 0.0,
+        "_FlowSpeed": 0.27000001072883606,
+        "_Foam": 1.0,
+        "_FoamIntensity": 9.0,
+        "_FoamRange": 0.9599999785423279,
+        "_Fresnel": 0.6499999761581421,
+        "_GlossMapScale": 1.0,
+        "_Glossiness": 0.5,
+        "_GlossyReflections": 1.0,
+        "_InvertFlow": 1.0,
+        "_Metallic": 0.0,
+        "_Mode": 0.0,
+        "_NormalScale": 1.0,
+        "_OcclusionStrength": 1.0,
+        "_Parallax": 0.019999999552965164,
+        "_RIPPLE": 0.0,
+        "_Reflect": 1.0,
+        "_ReflectDistortion": 1.0,
+        "_ReflectIntensity": 1.0,
+        "_Ripple_Intensity": 0.20000000298023224,
+        "_Ripple_Speed": 1.0,
+        "_Ripple_Strength": 1.0,
+        "_SampleAxis": 1.0,
+        "_SampleCoord": 0.0,
+        "_SmoothnessTextureChannel": 0.0,
+        "_SpecIntensity": 0.8999999761581421,
+        "_SpecRange": 0.11999999731779099,
+        "_SpecSmoothness": 0.8500000238418579,
+        "_SpecThreshold": 1.0,
+        "_SpecularHighlights": 1.0,
+        "_SrcBlend": 1.0,
+        "_Test": 0.0989999994635582,
+        "_UVSec": 0.0,
+        "_WaterDistortionIntensity": 0.06199999898672104,
+        "_ZWrite": 1.0
+      },
+      "colors": {
+        "_BloomFilter": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_BloomThreshold": {
+          "r": 0.5,
+          "g": 0.5,
+          "b": 0.5,
+          "a": 1.0
+        },
+        "_Caustics_Dir": {
+          "r": 1.0,
+          "g": 0.0,
+          "b": -1.0,
+          "a": 1.0
+        },
+        "_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_DeepWaterColor": {
+          "r": 0.0,
+          "g": 0.3011621832847595,
+          "b": 0.4274509847164154,
+          "a": 1.0
+        },
+        "_EmissionColor": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 1.0
+        },
+        "_FlowDirection": {
+          "r": -1.0,
+          "g": 0.0,
+          "b": 0.33000001311302185,
+          "a": 0.30000001192092896
+        },
+        "_FoamCol": {
+          "r": 0.5641509294509888,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_FoamTilling": {
+          "r": 6.0,
+          "g": 3.0,
+          "b": 3.0,
+          "a": 3.5
+        },
+        "_NormalTilling": {
+          "r": 2.0,
+          "g": 3.0,
+          "b": 1.0,
+          "a": 2.0
+        },
+        "_NormalUV1": {
+          "r": 2.0,
+          "g": 4.0,
+          "b": -1.0,
+          "a": 0.20000000298023224
+        },
+        "_NormalUV2": {
+          "r": 1.0,
+          "g": 2.0,
+          "b": -0.6000000238418579,
+          "a": -0.20000000298023224
+        },
+        "_Ripple_Color": {
+          "r": 1.0,
+          "g": 1.0,
+          "b": 1.0,
+          "a": 1.0
+        },
+        "_ShallowWaterColor": {
+          "r": 0.15574932098388672,
+          "g": 0.6196078658103943,
+          "b": 0.4380314350128174,
+          "a": 1.0
+        },
+        "_SunDir": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 1.0,
+          "a": 0.0
+        },
+        "_SunDirection": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 1.0,
+          "a": 0.0
+        },
+        "_UVOffset": {
+          "r": 0.0,
+          "g": 0.0,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_WaterColor": {
+          "r": 0.16724097728729248,
+          "g": 0.3132075071334839,
+          "b": 0.30175912380218506,
+          "a": 1.0
+        },
+        "_WaterDistortion": {
+          "r": -0.20000000298023224,
+          "g": -0.30000001192092896,
+          "b": 0.0,
+          "a": 0.0
+        },
+        "_WaterMovement": {
+          "r": 0.20000000298023224,
+          "g": 0.10000000149011612,
+          "b": 0.20000000298023224,
+          "a": 0.0
+        }
+      },
+      "renderQueue": 2999
+    }
+  ],
+  "entrances": [
+    {
+      "name": "S_outworld_entrance4",
+      "id": "303",
+      "bounds": {
+        "min": [
+          18.534126,
+          -0.485388,
+          18.117285
+        ],
+        "max": [
+          19.465879,
+          0.096152,
+          19.220434
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_entrance4"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_EntranceB3",
+      "id": "413",
+      "bounds": {
+        "min": [
+          22.790854,
+          -0.684299,
+          15.047304
+        ],
+        "max": [
+          24.096281,
+          0.047574,
+          17.373247
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_EntranceB3"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_entrance3",
+      "id": "443",
+      "bounds": {
+        "min": [
+          3.469606,
+          -1.278808,
+          -5.316377
+        ],
+        "max": [
+          4.572752,
+          -0.390547,
+          -4.384624
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_entrance3"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_entrance6",
+      "id": "728",
+      "bounds": {
+        "min": [
+          18.534126,
+          0.014612,
+          15.117285
+        ],
+        "max": [
+          19.465879,
+          0.596152,
+          16.220434
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_entrance6"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_entrance2",
+      "id": "738",
+      "bounds": {
+        "min": [
+          36.969604,
+          -2.121386,
+          5.534121
+        ],
+        "max": [
+          38.07275,
+          -1.539845,
+          6.465874
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_entrance2"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_entrance5",
+      "id": "1635",
+      "bounds": {
+        "min": [
+          18.534126,
+          -0.985388,
+          20.117285
+        ],
+        "max": [
+          19.465879,
+          -0.403848,
+          21.220434
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_entrance5"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_EntranceB4",
+      "id": "1660",
+      "bounds": {
+        "min": [
+          24.532114,
+          -0.158191,
+          2.939209
+        ],
+        "max": [
+          25.46789,
+          0.301772,
+          3.196191
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_EntranceB4"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_EntranceB2",
+      "id": "2577",
+      "bounds": {
+        "min": [
+          25.43541,
+          -0.951128,
+          -1.623037
+        ],
+        "max": [
+          26.484037,
+          -0.442137,
+          -0.290122
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_EntranceB2"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    }
+  ],
+  "billboardsUV": [
+    {
+      "name": "S_outworld_billboard16",
+      "bounds": {
+        "min": [
+          47.105183,
+          1.492391,
+          13.702276
+        ],
+        "max": [
+          47.990723,
+          4.961141,
+          14.527381
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.529274,
+        0.253778
+      ],
+      "uvMax": [
+        1.650242,
+        0.467771
+      ]
+    },
+    {
+      "name": "S_outworld_billboard14",
+      "bounds": {
+        "min": [
+          -0.288411,
+          -0.558013,
+          3.220821
+        ],
+        "max": [
+          2.018468,
+          1.434929,
+          3.349101
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.005444,
+        0.004605
+      ],
+      "uvMax": [
+        1.363567,
+        0.585084
+      ]
+    },
+    {
+      "name": "S_outworld_billboard19",
+      "bounds": {
+        "min": [
+          27.134644,
+          2.245116,
+          -8.532023
+        ],
+        "max": [
+          27.256544,
+          4.3406,
+          -5.330148
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.655697,
+        0.004605
+      ],
+      "uvMax": [
+        1.995464,
+        0.437707
+      ]
+    },
+    {
+      "name": "S_outworld_billboard20",
+      "bounds": {
+        "min": [
+          -11.109936,
+          -1.821047,
+          30.7111
+        ],
+        "max": [
+          -9.571942,
+          -0.8515,
+          31.009945
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.278542,
+        0.163226
+      ],
+      "uvMax": [
+        1.647571,
+        0.466459
+      ]
+    },
+    {
+      "name": "S_outworld_billboard17",
+      "bounds": {
+        "min": [
+          28.593323,
+          1.483972,
+          12.341304
+        ],
+        "max": [
+          28.654583,
+          2.384922,
+          16.848263
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.003881,
+        0.004605
+      ],
+      "uvMax": [
+        1.413498,
+        0.117574
+      ]
+    },
+    {
+      "name": "S_outworld_billboard21",
+      "bounds": {
+        "min": [
+          13.43634,
+          1.977708,
+          18.878481
+        ],
+        "max": [
+          14.124045,
+          4.083643,
+          18.981667
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.529274,
+        0.253778
+      ],
+      "uvMax": [
+        1.650242,
+        0.467771
+      ]
+    },
+    {
+      "name": "S_outworld_billboard23",
+      "bounds": {
+        "min": [
+          35.939781,
+          -0.404243,
+          3.657017
+        ],
+        "max": [
+          36.001041,
+          0.496706,
+          8.163975
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.003881,
+        0.004605
+      ],
+      "uvMax": [
+        1.413498,
+        0.117574
+      ]
+    },
+    {
+      "name": "S_outworld_billboard2",
+      "bounds": {
+        "min": [
+          13.996211,
+          0.239353,
+          -0.253486
+        ],
+        "max": [
+          15.450588,
+          1.653379,
+          0.152115
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D_5183400912757786055.png",
+      "uvMin": [
+        0.50586,
+        0.828657
+      ],
+      "uvMax": [
+        0.640564,
+        0.955142
+      ]
+    },
+    {
+      "name": "S_outworld_billboard10",
+      "bounds": {
+        "min": [
+          16.826916,
+          -0.540594,
+          21.979992
+        ],
+        "max": [
+          19.789879,
+          1.249564,
+          22.413275
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.269262,
+        0.255009
+      ],
+      "uvMax": [
+        1.51219,
+        0.473281
+      ]
+    },
+    {
+      "name": "S_outworld_billboard22",
+      "bounds": {
+        "min": [
+          40.061111,
+          -1.142985,
+          4.764885
+        ],
+        "max": [
+          42.53746,
+          0.353172,
+          5.127009
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.269262,
+        0.255009
+      ],
+      "uvMax": [
+        1.51219,
+        0.473281
+      ]
+    },
+    {
+      "name": "S_outworld_billboard18",
+      "bounds": {
+        "min": [
+          27.704277,
+          0.580009,
+          5.195446
+        ],
+        "max": [
+          28.671934,
+          2.489936,
+          8.369468
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.269262,
+        0.255009
+      ],
+      "uvMax": [
+        1.51219,
+        0.473281
+      ]
+    },
+    {
+      "name": "S_outworld_billboard25",
+      "bounds": {
+        "min": [
+          24.683182,
+          0.388445,
+          2.74435
+        ],
+        "max": [
+          25.552456,
+          3.050387,
+          2.874779
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.325845,
+        0.253778
+      ],
+      "uvMax": [
+        0.65025,
+        0.886744
+      ]
+    },
+    {
+      "name": "S_outworld_billboard15",
+      "bounds": {
+        "min": [
+          9.29854,
+          -0.657608,
+          2.122304
+        ],
+        "max": [
+          15.330936,
+          2.323533,
+          2.286307
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.654608,
+        0.441305
+      ],
+      "uvMax": [
+        1.980532,
+        0.6277
+      ]
+    },
+    {
+      "name": "S_outworld_billboard24",
+      "bounds": {
+        "min": [
+          26.667948,
+          -2.087512,
+          22.844046
+        ],
+        "max": [
+          32.514946,
+          3.019876,
+          23.422338
+        ]
+      },
+      "atlas": "/maps/hotel/textures/T_Arkodc_D2_7020966271008455022.png",
+      "uvMin": [
+        0.44463,
+        0.007014
+      ],
+      "uvMax": [
+        0.995616,
+        0.577549
+      ]
+    }
+  ],
+  "buildingCandidates": [
+    {
+      "name": "S_outworld_buildings96",
+      "id": "145",
+      "bounds": {
+        "min": [
+          27.941259,
+          3.116869,
+          15.793692
+        ],
+        "max": [
+          28.195072,
+          3.706086,
+          18.105694
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "DitherGroup_6",
+        "S_outworld_buildings96"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_buildings113",
+      "id": "457",
+      "bounds": {
+        "min": [
+          29.354713,
+          -2.325283,
+          23.65374
+        ],
+        "max": [
+          31.950884,
+          0.525052,
+          25.229721
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_buildings113"
+      ],
+      "materials": [
+        "MT_Arkodc_transparent",
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_buildings83",
+      "id": "857",
+      "bounds": {
+        "min": [
+          15.765334,
+          -0.451747,
+          15.707724
+        ],
+        "max": [
+          17.872238,
+          3.512717,
+          17.814629
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "DitherGroup_14",
+        "S_outworld_buildings83"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_buildings81",
+      "id": "1097",
+      "bounds": {
+        "min": [
+          13.819163,
+          -1.58594,
+          16.165047
+        ],
+        "max": [
+          16.437082,
+          2.096702,
+          17.107721
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_buildings81"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_buildings80",
+      "id": "1159",
+      "bounds": {
+        "min": [
+          11.383898,
+          -3.474899,
+          15.283231
+        ],
+        "max": [
+          14.535741,
+          3.360391,
+          18.319613
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_buildings80"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_buildings105",
+      "id": "1180",
+      "bounds": {
+        "min": [
+          14.43039,
+          1.983124,
+          16.344999
+        ],
+        "max": [
+          17.014595,
+          3.740112,
+          17.638262
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_buildings105"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_buildings87",
+      "id": "1204",
+      "bounds": {
+        "min": [
+          26.539936,
+          -1.070398,
+          14.776474
+        ],
+        "max": [
+          28.23863,
+          4.258833,
+          19.566557
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "DitherGroup_6",
+        "S_outworld_buildings87"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_buildings84",
+      "id": "1399",
+      "bounds": {
+        "min": [
+          13.904524,
+          0.221318,
+          18.13991
+        ],
+        "max": [
+          15.631998,
+          4.162504,
+          19.808994
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_buildings84"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_buildings107",
+      "id": "2093",
+      "bounds": {
+        "min": [
+          31.957561,
+          -2.242312,
+          23.731712
+        ],
+        "max": [
+          34.131996,
+          2.434333,
+          25.837816
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_buildings107"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    },
+    {
+      "name": "S_outworld_buildings85",
+      "id": "2252",
+      "bounds": {
+        "min": [
+          10.446276,
+          -1.057574,
+          17.962708
+        ],
+        "max": [
+          12.327116,
+          4.163076,
+          19.7773
+        ]
+      },
+      "hierarchy": [
+        "SceneRoot",
+        "GAME",
+        "Map",
+        "Anchor",
+        "StaticObjects",
+        "GraphicHolder",
+        "ark_odc_act53side_main(Clone)",
+        "Mesh",
+        "S_outworld",
+        "S_outworld_buildings85"
+      ],
+      "materials": [
+        "MT_Arkodc"
+      ]
+    }
+  ],
+  "evidenceBoundary": "Numeric names do not label a hotel region. Billboard24 UV triangles overlap atlas MOTEL rectangle and frame; visual confirmation in the restored scene is needed. The surrounding building cluster is a candidate, not an official declared region.",
+  "motelSignRenderers": [
+    {
+      "id": "2609",
+      "name": "S_outworld_billboard24",
+      "originalBounds": {
+        "min": [
+          26.667948,
+          -2.087512,
+          22.844046
+        ],
+        "max": [
+          32.514946,
+          3.019876,
+          23.422338
+        ]
+      },
+      "signGeometryBounds": {
+        "min": [
+          26.667948,
+          -0.169196,
+          22.844046
+        ],
+        "max": [
+          32.514946,
+          3.019876,
+          23.422338
+        ]
+      },
+      "candidateEvidence": "Billboard UV triangles overlap original atlas MOTEL rectangle and border; original object is numeric name."
+    }
+  ],
+  "motelCandidate": {
+    "id": "2609",
+    "name": "S_outworld_billboard24",
+    "originalBounds": {
+      "min": [
+        26.667948,
+        -2.087512,
+        22.844046
+      ],
+      "max": [
+        32.514946,
+        3.019876,
+        23.422338
+      ]
+    },
+    "signGeometryBounds": {
+      "min": [
+        26.667948,
+        -0.169196,
+        22.844046
+      ],
+      "max": [
+        32.514946,
+        3.019876,
+        23.422338
+      ]
+    },
+    "candidateEvidence": "Billboard UV triangles overlap original atlas MOTEL rectangle and border; original object is numeric name."
+  }
+}

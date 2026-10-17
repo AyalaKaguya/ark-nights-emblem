@@ -1,0 +1,10 @@
+{
+  "meshCount": 60,
+  "rendererCount": 2624,
+  "vertexCount": 483084,
+  "triangleCount": 363132,
+  "errors": [],
+  "navFaceNormalPositiveY": 772,
+  "navFaceNormalNegativeY": 0,
+  "note": "All render arrays and textures independently re-read and validated. Browser appearance remains a separate check."
+}
