@@ -1,3 +1,6 @@
 import { defineConfig } from 'vitest/config';
 
-export default defineConfig({ test: { include: ['src/**/*.test.ts'] } });
+export default defineConfig({
+	cacheDir: '.qa/cache/vitest',
+	test: { include: ['src/**/*.test.ts'] },
+});

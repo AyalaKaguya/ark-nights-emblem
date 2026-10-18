@@ -69,7 +69,7 @@ def object_id(obj):
     return f"{getattr(obj.assets_file, 'name', '')}:{obj.path_id}"
 
 
-def export_scene(env, out):
+def export_scene(env, out, qa_out):
     objects = list(env.objects)
     scene_objects = [o for o in objects if "ark_odc_act53side_main" in o.assets_file.name and "scene_data" not in o.assets_file.name]
     # Scene serialized-file names may be CAB hashes, so select the scene via its abundant GameObjects.
@@ -215,7 +215,7 @@ def export_scene(env, out):
     doc={'version':1,'source':'local Arknights PC client; ark_odc_act53side_main', 'copyright':'Arknights assets belong to Hypergryph; code license does not grant asset rights.', 'coordinates':'Unity left-handed Y-up world metres. matrices are column-major, positions transformed to world. Static batch triangles use IDENTITY renderMatrix; do not apply source GO matrix again.', 'uvConvention':'Unity UVs bottom-left; PNG exports use UnityPy image orientation. Loader may need invertY=false.', 'meshes':list(chunks.values()),'instances':instances,'materials':list(materials.values()),'textures':list(textures.values()),'lightmaps':lightmaps,'navigation':navigation,'colliders':colliders,'cameras':cameras,'nodes':nodes,'sceneSettings':scene_settings,'regions':{'springExterior':sbounds},'suggestedPlay':suggested,'cameraEvidence':'Only SpineCam and ShadowCam are serialized. scene_data contains baked NavMeshData and occlusion data; no player camera config.', 'colliderEvidence':'All 19 BoxColliders are trigger-only DitherGroup occlusion volumes, not physical movement colliders. Use original Navmesh geometry.', 'failures':failures}
     (out/'scene.json').write_text(json.dumps(doc,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
     export_runtime(doc,out)
-    (out/'extraction-report.json').write_text(json.dumps({'chunks':len(chunks),'instances':len(instances),'materials':len(materials),'textures':len(textures),'navigation':[{'name':n['name'],'vertices':len(n['positions'])//3,'triangles':len(n['indices'])//3,'bounds':n['bounds']} for n in navigation],'regions':doc['regions'],'failures':failures},ensure_ascii=False,indent=2),encoding='utf-8')
+    (qa_out/'extraction-report.json').write_text(json.dumps({'chunks':len(chunks),'instances':len(instances),'materials':len(materials),'textures':len(textures),'navigation':[{'name':n['name'],'vertices':len(n['positions'])//3,'triangles':len(n['indices'])//3,'bounds':n['bounds']} for n in navigation],'regions':doc['regions'],'failures':failures},ensure_ascii=False,indent=2),encoding='utf-8')
     (out/'play-suggestions.json').write_text(json.dumps(suggested,ensure_ascii=False,indent=2),encoding='utf8')
     export_interest(doc,out)
     print('EXPORTED',len(chunks),'chunks',len(instances),'instances',len(textures),'textures',len(failures),'issues',flush=True)
@@ -266,13 +266,17 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--client", type=Path, default=DEFAULT_CLIENT)
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "public/maps/hotel")
+    ap.add_argument("--qa-out", type=Path, default=Path(__file__).resolve().parents[1] / ".qa/extraction/hotel", help="Directory for extraction reports and inspection output")
     ap.add_argument("--inspect", action="store_true")
     ap.add_argument("--runtime-only", action="store_true", help="Build the compact payload from an existing scene.json without rereading the client")
     args = ap.parse_args()
-    args.out.mkdir(parents=True, exist_ok=True)
     if args.runtime_only:
+        args.out.mkdir(parents=True, exist_ok=True)
         export_runtime(json.loads((args.out/'scene.json').read_text(encoding='utf8')),args.out)
         return
+    args.qa_out.mkdir(parents=True, exist_ok=True)
+    if not args.inspect:
+        args.out.mkdir(parents=True, exist_ok=True)
     bundles = [args.client / SCENE_SUB / "ark_odc_act53side_main.ab", args.client / SCENE_SUB / "scene_data.ab", args.client / SCENE_SUB / "ark_odc_act53side_main/lightingdata.ab", args.client / "arts/maps/map_arkodc/res.ab"]
     bundles.extend(path for path in (args.client/'arts/maps/map_arkodc').rglob('*.ab') if path not in bundles)
     default_resources=args.client.parents[2]/'Resources/unity default resources'
@@ -287,10 +291,11 @@ def main():
     for path in bundles:
         relative=str(path.relative_to(args.client)).replace('\\','/') if path.is_relative_to(args.client) else '../../Resources/unity default resources'
         sources.append({'relativePath':relative,'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
-    (args.out/'source-manifest.json').write_text(json.dumps({'source':'Local installed Arknights PC game assets only; read-only extraction','sources':sources,'sourceAssetsUnmodified':True},indent=2),encoding='utf8')
+    manifest_out = args.qa_out if args.inspect else args.out
+    (manifest_out/'source-manifest.json').write_text(json.dumps({'source':'Local installed Arknights PC game assets only; read-only extraction','sources':sources,'sourceAssetsUnmodified':True},indent=2),encoding='utf8')
     print("TYPES", Counter(o.type.name for o in env.objects), flush=True)
     if not args.inspect:
-        export_scene(env,args.out)
+        export_scene(env,args.out,args.qa_out)
         return
     names = []
     cameras = []
@@ -303,7 +308,7 @@ def main():
             if obj.type.name == "Camera": cameras.append({"id": obj.path_id, "data": jsonable(data)})
             if name and re.search(r"hotel|spring|hots|resort|odc|area|zone|root|nav|camera|温泉|旅馆", name, re.I): print(obj.type.name, obj.path_id, name, flush=True)
         except Exception as exc: print("READFAIL", obj.type.name, obj.path_id, str(exc)[:160], flush=True)
-    (args.out / "inspection.json").write_text(json.dumps({"types": dict(Counter(o.type.name for o in env.objects)), "gameObjects": names, "cameras": cameras}, ensure_ascii=False, indent=2), encoding="utf-8")
+    (args.qa_out / "inspection.json").write_text(json.dumps({"types": dict(Counter(o.type.name for o in env.objects)), "gameObjects": names, "cameras": cameras}, ensure_ascii=False, indent=2), encoding="utf-8")
     print("INSPECTION", len(names), "objects", len(cameras), "cameras", flush=True)
 
 

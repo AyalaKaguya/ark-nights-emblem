@@ -74,8 +74,9 @@ SELECTION = [
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--client',type=Path,default=hotel.DEFAULT_CLIENT);ap.add_argument('--out',type=Path,default=Path(__file__).resolve().parents[1]/'public/ui');args=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--client',type=Path,default=hotel.DEFAULT_CLIENT);ap.add_argument('--out',type=Path,default=Path(__file__).resolve().parents[1]/'public/ui');ap.add_argument('--qa-out',type=Path,default=Path(__file__).resolve().parents[1]/'.qa/extraction/ui',help='Directory for the generated contact sheet');args=ap.parse_args()
  args.out.mkdir(parents=True,exist_ok=True)
+ args.qa_out.mkdir(parents=True,exist_ok=True)
  grouped={}
  for selection in SELECTION:grouped.setdefault(selection[1],[]).append(selection)
  sources=[];assets=[];missing=[]
@@ -105,7 +106,7 @@ def main():
  except Exception:font=None
  for i,asset in enumerate(assets):
   image=Image.open(args.out/asset['path'].removeprefix('/ui/'));image.thumbnail((160,140));x=i%cols*cellw+(cellw-image.width)//2;y=i//cols*cellh+12;canvas.paste(image,(x,y),image);draw.text((i%cols*cellw+7,i//cols*cellh+155),asset['path'][4:],fill='#eee3cb',font=font)
- canvas.save(args.out/'contact-sheet.jpg',quality=92)
+ canvas.save(args.qa_out/'contact-sheet.jpg',quality=92)
  print('DONE',len(assets),'assets',len(missing),'missing',flush=True)
  print('MISSING',missing,flush=True)
 

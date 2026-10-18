@@ -17,7 +17,7 @@ test('complete journey through reception, supplies, gate, legal combat and conti
 	page.on('pageerror', error => errors.push(error.message));
 	await travelToEncounter(page);
 	await skipPresentation(page);
-	if (info.project.name === 'edge') { await mkdir('screenshots', { recursive: true }); await page.screenshot({ path: 'screenshots/combat.png' }); }
+	if (info.project.name === 'edge') { await mkdir('.qa/screenshots', { recursive: true }); await page.screenshot({ path: '.qa/screenshots/combat.png' }); }
 	for (let count = 0; count < 90; count++) {
 		const state = await waitForPlayerTurn(page);
 		if (state.mode === 'victory' || state.mode === 'defeat') break;
@@ -27,12 +27,12 @@ test('complete journey through reception, supplies, gate, legal combat and conti
 	}
 	await waitForMode(page, 'victory');
 	await expect(page.getByRole('heading', { name: '庭院重归宁静' })).toBeVisible();
-	if (info.project.name === 'edge') await page.screenshot({ path: 'screenshots/victory.png' });
+	if (info.project.name === 'edge') await page.screenshot({ path: '.qa/screenshots/victory.png' });
 	await page.locator('[data-action="continue"]').click();
 	const rested = await waitForMode(page, 'exploring');
 	expect(rested.cleared).toBe(true);
 	expect(rested.battle).toBeNull();
-	if (info.project.name === 'edge') await page.screenshot({ path: 'screenshots/exploration.png' });
+	if (info.project.name === 'edge') await page.screenshot({ path: '.qa/screenshots/exploration.png' });
 	await page.locator('[data-action="help"]').first().click();
 	await expect(page.getByRole('dialog', { name: '暂停菜单' }).locator('[data-action="replay"]')).toBeEnabled();
 	await page.keyboard.press('h');

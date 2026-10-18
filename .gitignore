@@ -1,20 +1,12 @@
 node_modules/
 dist/
-test-results/
-playwright-report/
-screenshots/
-/VALIDATION.md
-/UI_VALIDATION.md
 .vite/
 .venv-tools/
 
 # Python tool caches
 __pycache__/
 *.py[cod]
+.mypy_cache/
 
-# Local extraction inspection and QA output
-/public/maps/hotel/atlas-contact.jpg
-/public/maps/hotel/atlas-d2-grid.jpg
-/public/maps/hotel/scene-data-raw.json
-/public/maps/hotel/inspection.json
-/public/ui/contact-sheet.jpg
+# QA screenshots, test reports and extraction diagnostics
+/.qa/

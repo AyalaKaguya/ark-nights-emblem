@@ -18,7 +18,6 @@ Spine 干员，完成探索、交互、遭遇战、胜利继续探索和失败�
 需要 Node.js 24。依赖使用精确版本并提交 `package-lock.json`。
 
 ```powershell
-cd web
 npm ci
 npm run dev
 ```
@@ -36,6 +35,22 @@ npm run preview
 E2E 使用本机 Edge，并在检测到 Chrome 时一起运行；无需把浏览器状态、账号或
 游戏客户端交给自动化。源码只读开发诊断供 UI 测试定位，生产构建不提供诊断。
 `dist/` 是静态网站，需要 HTTP 服务；资源使用相对基础路径，可部署在子目录。
+
+## QA 产物
+
+从仓库根目录运行命令。QA 产物统一放在 `.qa/`，整目录由 Git 忽略：
+
+| 目录 | 内容 |
+| --- | --- |
+| `.qa/screenshots/` | E2E 流程及不同窗口尺寸的截图 |
+| `.qa/playwright/results/` | 失败截图、追踪与测试附件 |
+| `.qa/playwright/report/` | Playwright HTML 报告 |
+| `.qa/cache/vitest/` | 单元测试缓存 |
+| `.qa/extraction/hotel/`、`.qa/extraction/ui/` | 素材盘点、QA 拼图、提取与校验报告 |
+
+`npm run test:e2e -- --project=edge` 会生成截图与浏览器测试报告。
+提取脚本的 `--out` 指定游戏素材目录，`--qa-out` 可指定诊断输出目录。
+手工验收记录、临时探针和调研数据也放在 `.qa/` 下。
 
 ## 操作
 

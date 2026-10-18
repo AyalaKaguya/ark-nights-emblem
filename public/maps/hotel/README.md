@@ -9,15 +9,17 @@ The game assets remain the property of Hypergryph. They are not covered by the p
 ## Reproduce
 
 ```powershell
-web/.venv-tools/Scripts/python.exe -X utf8 web/tools/extract-hotel.py
+.venv-tools/Scripts/python.exe -X utf8 tools/extract-hotel.py
 ```
 
-Dependencies: UnityPy 1.25.4, Pillow, numpy, lz4. The extractor registers Arknights LZ4AK decompression without rewriting the source files. Its compression routine carries the BSD notice in `web/tools/LICENSE-Ark-Unpacker.txt`.
+Dependencies: UnityPy 1.25.4, Pillow, numpy, lz4. The extractor registers Arknights LZ4AK decompression without rewriting the source files. Its compression routine carries the BSD notice in `tools/LICENSE-Ark-Unpacker.txt`.
+
+Extraction diagnostics go to `.qa/extraction/hotel/` at the repository root, which is ignored by Git. `--qa-out` overrides this directory; `--out` controls game asset output. `--inspect` writes its inventory into the QA directory.
 
 ## Loader contract
 
 - `scene.json` contains the full scene geometry, 2,624 original renderer records, materials, original PNG textures, eight lightmap pairs, the authored navigation source mesh, hierarchy, trigger volumes, and the two serialized cameras.
-- Production loading uses `scene-runtime.json` (about 2.3 MB) and `geometry.bin` (about 31.4 MB). Each mesh attribute is `{offset, length, kind}`: a 4-byte aligned byte offset, element count, and `float32`/`uint32`, little-endian. Use typed-array views of the downloaded ArrayBuffer. `runtime-validation.json` records a complete binary round-trip comparison against `scene.json`. `--runtime-only` regenerates these two payloads from the existing full JSON.
+- Production loading uses `scene-runtime.json` (about 2.3 MB) and `geometry.bin` (about 31.4 MB). Each mesh attribute is `{offset, length, kind}`: a 4-byte aligned byte offset, element count, and `float32`/`uint32`, little-endian. Use typed-array views of the downloaded ArrayBuffer. QA round-trip comparisons against `scene.json` belong in `.qa/extraction/hotel/runtime-validation.json`. `--runtime-only` regenerates these two payloads from the existing full JSON.
 - `meshes` are merged by original material, lightmap page and active state. `positions` and `normals` are already **world coordinates**, Unity left-handed, Y-up, metres. Apply them directly in Babylon. Do not reapply any original instance matrix.
 - Each mesh has flattened `positions` (3), `normals` (3), `uv` (2), `uv2` (2), `colors` (4), and triangle `indices`. `uv2` has each original renderer's lightmap scale/offset applied unless it was already baked by Unity static batching.
 - `instances` retain the original names, hierarchy, world bounds and source matrix (16 values, **column-major**) for provenance and selective occlusion. Their `ranges` point to index ranges inside the merged draw chunks.
@@ -31,4 +33,4 @@ Dependencies: UnityPy 1.25.4, Pillow, numpy, lz4. The extractor registers Arknig
 
 `interest-points.json` retains the original water renderer bounds, smoke emitter transforms, water shader colors/floats, entrance objects and candidate building cluster. Numeric object names do not explicitly label a hotel: the strongest locator is `S_outworld_billboard24` (GO 2609), whose UV triangles overlap the original atlas' MOTEL sign and frame. Its world bounds are x 26.668–32.515, z 22.844–23.422. Confirm this sign visually in the restored scene before assigning a hotel-region label.
 
-`validation.json` records an independent reread of array lengths, finite numbers, index bounds and local texture files. Rendering appearance and custom shader fidelity require a separate browser check. The extraction report lists the remaining missing dependencies (three waterwheel flow textures); all 2,624 original mesh renderers are present.
+Independent checks of array lengths, finite numbers, index bounds and local texture files belong in `.qa/extraction/hotel/validation.json`. Rendering appearance and custom shader fidelity require a separate browser check. The extractor writes `.qa/extraction/hotel/extraction-report.json` with missing dependencies; the previous extraction found three missing waterwheel flow textures and included all 2,624 original mesh renderers.

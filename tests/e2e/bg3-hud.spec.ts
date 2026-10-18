@@ -148,7 +148,7 @@ for (const viewport of [{ width: 1600, height: 1000 }, { width: 1280, height: 72
 		await assertNoLegacyGuidance(page);
 		await assertImagesLoaded(page);
 		await assertHudLayout(page, false);
-		if (info.project.name === 'edge') { await mkdir('screenshots/ui', { recursive: true }); await page.screenshot({ path: `screenshots/ui/explore-${viewport.width}x${viewport.height}.png` }); }
+		if (info.project.name === 'edge') { await mkdir('.qa/screenshots/ui', { recursive: true }); await page.screenshot({ path: `.qa/screenshots/ui/explore-${viewport.width}x${viewport.height}.png` }); }
 		await page.locator('[data-action="help"]').first().click();
 		const pause = page.getByRole('dialog', { name: '暂停菜单' });
 		await expect(pause).toBeVisible();
@@ -163,7 +163,7 @@ for (const viewport of [{ width: 1600, height: 1000 }, { width: 1280, height: 72
 		await assertNoLegacyGuidance(page);
 		await assertImagesLoaded(page);
 		await assertHudLayout(page, true);
-		if (info.project.name === 'edge') await page.screenshot({ path: `screenshots/ui/combat-${viewport.width}x${viewport.height}.png` });
+		if (info.project.name === 'edge') await page.screenshot({ path: `.qa/screenshots/ui/combat-${viewport.width}x${viewport.height}.png` });
 		expect(errors).toEqual([]);
 	});
 }

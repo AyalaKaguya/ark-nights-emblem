@@ -10,13 +10,14 @@ const chromeInstalled = installed([
 
 export default defineConfig({
 	testDir: './tests/e2e',
+	outputDir: './.qa/playwright/results',
 	fullyParallel: false,
 	workers: 1,
 	timeout: 180_000,
 	expect: { timeout: 15_000 },
 	forbidOnly: !!process.env.CI,
 	retries: 0,
-	reporter: [['list'], ['html', { open: 'never' }]],
+	reporter: [['list'], ['html', { open: 'never', outputFolder: '.qa/playwright/report' }]],
 	use: {
 		baseURL: process.env.HOTEL_BASE_URL ?? 'http://127.0.0.1:4173',
 		viewport: { width: 1600, height: 1000 },

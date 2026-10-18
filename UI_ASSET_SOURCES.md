@@ -18,7 +18,7 @@ The authoritative asset manifest is **`public/ui/manifest.json`** (URL `/ui/mani
 | `/ui/frames/` | `skill.png`, `portrait.png`, `battle-menu.png`, `character-menu.png`, `rectangle.png`, `rectangle-triangle.png`, `circle.png`, `ring.png`, `skill-panel.png`, `info-panel.png`, `round-panel.png`, `item.png`, `talent.png` | Original battle/common UI frame and background Sprites |
 | `/ui/items/` | `rally.png`, `supply.png`, `food.png`, `currency.png`, `material.png`, `manual.png` | Original `ap_supply_lt_60`, `ap_supply_lt_120`, `ap_supply_lt_100_2025_5` (sandwich), `GOLD`, `MTL_GOLD1`, `MTL_SKILL3` |
 
-The current set is 50 PNG assets from 11 targeted bundles. The extractor can generate `public/ui/contact-sheet.jpg` as a local QA overview; this temporary image is ignored by Git. `/ui/validation.json` records independent PNG decoding, size and hash checks.
+The current set is 50 PNG assets from 11 targeted bundles. The extractor generates `.qa/extraction/ui/contact-sheet.jpg` as a local QA overview. Independent PNG decoding, size and hash checks belong in `.qa/extraction/ui/validation.json`. The entire `.qa/` directory is ignored by Git.
 
 ## Adaptation boundaries
 
@@ -32,10 +32,10 @@ The current set is 50 PNG assets from 11 targeted bundles. The extractor can gen
 ## Reproduce
 
 ```powershell
-web/.venv-tools/Scripts/python.exe -X utf8 web/tools/extract-ui.py
+.venv-tools/Scripts/python.exe -X utf8 tools/extract-ui.py
 ```
 
-Dependencies are already in `web/.venv-tools`: UnityPy, Pillow, numpy, lz4. The script imports the sibling map extractor's Arknights LZ4AK decoder; its upstream BSD attribution is in `tools/LICENSE-Ark-Unpacker.txt`. No unrelated client bundles are bulk-extracted.
+Install UnityPy, Pillow, numpy and lz4 in `.venv-tools` before running the extractor. The script imports the sibling map extractor's Arknights LZ4AK decoder; its upstream BSD attribution is in `tools/LICENSE-Ark-Unpacker.txt`. No unrelated client bundles are bulk-extracted.
 
 ## Rights
 
